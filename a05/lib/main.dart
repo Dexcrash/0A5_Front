@@ -95,7 +95,8 @@ leading: Builder(
            children: <Widget>[
             new  Text(
               'Reciente', style: TextStyle(
-        color: $colorTitle)
+        color: $colorTitle, fontSize: 30.0,
+      )
             ),
             new  SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -123,18 +124,213 @@ leading: Builder(
    ), 
    ),
           
-  
+  SizedBox(     
+ height: 160,
+ child:  Card(
+   shape: RoundedRectangleBorder(
+   borderRadius: BorderRadius.circular(20.0),
+ ),
+   color: $base,
+   child: 
+     Column(
+       children: <Widget>[
+        Image.asset('img/img1.png'),
+        Text("Coordinación", style: TextStyle(
+        color: $colorTitle
+  )),
+         Text("PRIMERA INFANCIA", style: TextStyle(
+        color: $colorSubtitle
+  )),
+       ],
+     ),
+   ), 
+   ),
+   SizedBox(     
+ height: 160,
+ child:  Card(
+   shape: RoundedRectangleBorder(
+   borderRadius: BorderRadius.circular(20.0),
+ ),
+   color: $base,
+   child: 
+     Column(
+       children: <Widget>[
+        Image.asset('img/img2.png'),
+        Text("Coordinación", style: TextStyle(
+        color: $colorTitle
+  )),
+         Text("PRIMERA INFANCIA", style: TextStyle(
+        color: $colorSubtitle
+  )),
+       ],
+     ),
+   ), 
+   ),
+   SizedBox(     
+ height: 160,
+ child:  Card(
+   shape: RoundedRectangleBorder(
+   borderRadius: BorderRadius.circular(20.0),
+ ),
+   color: $base,
+   child: 
+     Column(
+       children: <Widget>[
+        Image.asset('img/img1.png'),
+        Text("Coordinación", style: TextStyle(
+        color: $colorTitle
+  )),
+         Text("PRIMERA INFANCIA", style: TextStyle(
+        color: $colorSubtitle
+  )),
+       ],
+     ),
+   ), 
+   ),
+   SizedBox(     
+ height: 160,
+ child:  Card(
+   shape: RoundedRectangleBorder(
+   borderRadius: BorderRadius.circular(20.0),
+ ),
+   color: $base,
+   child: 
+     Column(
+       children: <Widget>[
+        Image.asset('img/img1.png'),
+        Text("Coordinación", style: TextStyle(
+        color: $colorTitle
+  )),
+         Text("PRIMERA INFANCIA", style: TextStyle(
+        color: $colorSubtitle
+  )),
+       ],
+     ),
+   ), 
+   ),
             ],),),
       
                         
  new Text(
               'Hoy', style: TextStyle(
-        color: $colorTitle
+        color: $colorTitle, fontSize: 30.0,
+      
   )),
-            
-          ],
+        new  SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child:   Row(
+              children: <Widget>[  
+            SizedBox(     
+ height: 160,
+ child:  Card(
+  
+   child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("img/img3.png"),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
+          ),
         ),
+        child:Row(
+              children: <Widget>[   Text("Lenguaje", style: TextStyle(
+        color: $base , fontSize: 25.0,
+  )), Text("Entre 1 y 5 meses", style: TextStyle(
+        color: $base
+  )),
+  
+  
+  
+  ]),
+      )
+  
+  ), 
+   ),
 
+SizedBox(     
+ height: 160,
+ child:  Card(
+  
+   child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("img/img3.png"),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
+          ),
+        ),
+        child:Row(
+              children: <Widget>[   Text("Lenguaje", style: TextStyle(
+        color: $base , fontSize: 25.0,
+  )), Text("Entre 1 y 5 meses", style: TextStyle(
+        color: $base
+  )),
+  
+  
+  
+  ]),
+      )
+  
+  ), 
+   ),
+   SizedBox(     
+ height: 160,
+ child:  Card(
+  
+   child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("img/img3.png"),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
+          ),
+        ),
+        child:Row(
+              children: <Widget>[   Text("Lenguaje", style: TextStyle(
+        color: $base , fontSize: 25.0,
+  )), Text("Entre 1 y 5 meses", style: TextStyle(
+        color: $base
+  )),
+  
+  
+  
+  ]),
+      )
+  
+  ), 
+   ),
+   SizedBox(     
+ height: 160,
+ child:  Card(
+  
+   child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("img/img3.png"),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
+          ),
+        ),
+        child:Row(
+              children: <Widget>[   Text("Lenguaje", style: TextStyle(
+        color: $base , fontSize: 25.0,
+  )), Text("Entre 1 y 5 meses", style: TextStyle(
+        color: $base
+  )),
+  
+  
+  
+  ]),
+      )
+  
+  ), 
+   ),
+
+
+
+      ],
+        ),
+        ),], ),
       bottomNavigationBar: BottomNavigationBar(
        currentIndex: 0, // this will be set when a new tab is tapped
        items: [
