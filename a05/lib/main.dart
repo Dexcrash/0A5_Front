@@ -154,12 +154,15 @@ Text(
          ),
          BottomNavigationBarItem(
            icon: new Icon(Icons.show_chart, color: $colorSubtitle),
+           title: new Text(''),
          ),
          BottomNavigationBarItem(
            icon: Icon(Icons.search, color: $colorSubtitle),
+           title: new Text(''),
          ),
          BottomNavigationBarItem(
            icon: Icon(Icons.person, color: $colorSubtitle),
+           title: new Text(''),
          )
        ],
      ), // This trailing comma makes auto-formatting nicer for build methods.
