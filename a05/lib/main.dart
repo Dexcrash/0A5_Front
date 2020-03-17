@@ -218,10 +218,11 @@ leading: Builder(
   )),
         new  SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child:   Row(
+            child:   Column(
               children: <Widget>[  
             SizedBox(     
- height: 160,
+ width: 450.0,
+ height: 250.0,
  child:  Card(
   
    child: Container(
@@ -232,7 +233,9 @@ leading: Builder(
             alignment: Alignment.topCenter,
           ),
         ),
-        child:Row(
+        child:Column(
+          mainAxisSize: MainAxisSize.min,
+      
               children: <Widget>[   Text("Lenguaje", style: TextStyle(
         color: $base , fontSize: 25.0,
   )), Text("Entre 1 y 5 meses", style: TextStyle(
@@ -247,84 +250,6 @@ leading: Builder(
   ), 
    ),
 
-SizedBox(     
- height: 160,
- child:  Card(
-  
-   child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("img/img3.png"),
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.topCenter,
-          ),
-        ),
-        child:Row(
-              children: <Widget>[   Text("Lenguaje", style: TextStyle(
-        color: $base , fontSize: 25.0,
-  )), Text("Entre 1 y 5 meses", style: TextStyle(
-        color: $base
-  )),
-  
-  
-  
-  ]),
-      )
-  
-  ), 
-   ),
-   SizedBox(     
- height: 160,
- child:  Card(
-  
-   child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("img/img3.png"),
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.topCenter,
-          ),
-        ),
-        child:Row(
-              children: <Widget>[   Text("Lenguaje", style: TextStyle(
-        color: $base , fontSize: 25.0,
-  )), Text("Entre 1 y 5 meses", style: TextStyle(
-        color: $base
-  )),
-  
-  
-  
-  ]),
-      )
-  
-  ), 
-   ),
-   SizedBox(     
- height: 160,
- child:  Card(
-  
-   child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("img/img3.png"),
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.topCenter,
-          ),
-        ),
-        child:Row(
-              children: <Widget>[   Text("Lenguaje", style: TextStyle(
-        color: $base , fontSize: 25.0,
-  )), Text("Entre 1 y 5 meses", style: TextStyle(
-        color: $base
-  )),
-  
-  
-  
-  ]),
-      )
-  
-  ), 
-   ),
 
 
 
