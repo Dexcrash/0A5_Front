@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           // This is the theme of your application.
            primarySwatch: MaterialColor(0xffb31830, swatch),
-         scaffoldBackgroundColor: $scaffoldBackground,
+           scaffoldBackgroundColor: $scaffoldBackground,
         ),
         initialRoute: '/',
         routes: <String, WidgetBuilder> {
