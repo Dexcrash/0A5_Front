@@ -78,24 +78,22 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         backgroundColor: $base,
         title: Text("A05", style: TextStyle(
-        color: $base
+        color:   $colorTitle
+
   )),
 leading: Builder(
     builder: (BuildContext context) {
       return IconButton(
-        icon: const Icon(Icons.menu),
-        onPressed: () { Scaffold.of(context).openDrawer(); },
-        tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-      );
+        icon: const Icon(Icons.menu, color: $colorTitle),
+         );
     },
   )
 
 
       ),
       body: Center(
-        child: Column(
-           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+        child: ListView(
+           children: <Widget>[
             Text(
               'Reciente', style: TextStyle(
         color: $colorTitle
@@ -112,8 +110,8 @@ leading: Builder(
    borderRadius: BorderRadius.circular(20.0),
  ),
    color: $base,
-   child: Center(
-     child: Column(
+   child: 
+     Column(
        children: <Widget>[
          Image.asset('assets/img/img1.png'),
          Text("Coordinación", style: TextStyle(
@@ -126,23 +124,19 @@ leading: Builder(
      ),
    ),
  ),
-              ),
+
+            ],
+          ),
+                        
 Text(
               'Hoy', style: TextStyle(
         color: $colorTitle
   )
             ),
-
-
-
-
-
-
-            ],
-          ),
           ],
         ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
        currentIndex: 0, // this will be set when a new tab is tapped
        items: [
