@@ -91,21 +91,19 @@ leading: Builder(
 
 
       ),
-      body: Center(
-        child: ListView(
+      body:  new Column(
            children: <Widget>[
-            Text(
+            new  Text(
               'Reciente', style: TextStyle(
-        color: $colorTitle
-  )
+        color: $colorTitle)
             ),
-             ListView(
+            new  SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Container(
-                padding: new EdgeInsets.all(32.0),
- height: 180,
- child: Card(
+            child:   Row(
+              children: <Widget>[  
+            SizedBox(     
+ height: 160,
+ child:  Card(
    shape: RoundedRectangleBorder(
    borderRadius: BorderRadius.circular(20.0),
  ),
@@ -113,8 +111,8 @@ leading: Builder(
    child: 
      Column(
        children: <Widget>[
-         Image.asset('assets/img/img1.png'),
-         Text("Coordinación", style: TextStyle(
+        Image.asset('img/img1.png'),
+        Text("Coordinación", style: TextStyle(
         color: $colorTitle
   )),
          Text("PRIMERA INFANCIA", style: TextStyle(
@@ -122,20 +120,20 @@ leading: Builder(
   )),
        ],
      ),
+   ), 
    ),
- ),
-
-            ],
-          ),
+          
+  
+            ],),),
+      
                         
-Text(
+ new Text(
               'Hoy', style: TextStyle(
         color: $colorTitle
-  )
-            ),
+  )),
+            
           ],
         ),
-      ),
 
       bottomNavigationBar: BottomNavigationBar(
        currentIndex: 0, // this will be set when a new tab is tapped
