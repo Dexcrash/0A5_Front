@@ -1,7 +1,7 @@
 library color_constants;
 import 'package:flutter/material.dart';
 
-const Color $base = Color(0xffb31830); 
-final Color $secondary = Color(0xff006e68);
-const Color $scaffoldBackground = Color(0xffF2F2F2);
+const Color $base = Colors.white; 
+final Color $secondary = Color(0xFFf0f3f4);
+const Color $scaffoldBackground = Color(0xffd97d54);
 const Color $white = Colors.white;
