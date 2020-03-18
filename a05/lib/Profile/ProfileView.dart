@@ -9,7 +9,7 @@ import '../assets/colors.dart';
 const mainColor = Colors.orange;
 
 class ProfileViewState extends State<ProfileView> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -34,7 +34,7 @@ class ProfileViewState extends State<ProfileView> {
             _selectedIndex, // this will be set when a new tab is tapped
         items: [
           BottomNavigationBarItem(
-            icon: new Icon(Icons.home, color: $scaffoldBackground),
+            icon: new Icon(Icons.home, color: $colorSubtitle),
             title:
                 new Text('Home', style: TextStyle(color: $scaffoldBackground)),
           ),
@@ -47,8 +47,9 @@ class ProfileViewState extends State<ProfileView> {
             title: new Text(''),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: $colorSubtitle),
-            title: new Text('Perfil'),
+            icon: Icon(Icons.person, color: $scaffoldBackground),
+            title: new Text('Perfil',
+                style: TextStyle(color: $scaffoldBackground)),
           ),
         ],
         onTap: _onItemTapped,
