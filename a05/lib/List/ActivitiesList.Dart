@@ -18,22 +18,22 @@ class ActivitiesList extends StatefulWidget {
       ListActivity(
           activityCategory: "Cognitivo",
           activityName: "Contar Numeritos",
-          thumbnail: "assets/image_1.jpg",
+          thumbnail: "img/imageAct_1.jpg",
           duration: "5 min"),
       ListActivity(
           activityCategory: "Cognitivo",
           activityName: "Contar Dedos",
-          thumbnail: "assets/image_1.jpg",
+          thumbnail: "img/imageAct_1.jpg",
           duration: "6 min"),
       ListActivity(
           activityCategory: "Cognitivo",
           activityName: "Contar Cubos",
-          thumbnail: "assets/image_1.jpg",
+          thumbnail: "img/imageAct_1.jpg",
           duration: "8 min"),
       ListActivity(
-          activityCategory: "Comunista",
-          activityName: "Contar Camaradas",
-          thumbnail: "assets/img_2.jpg",
+          activityCategory: "Lenguaje",
+          activityName: "Rebote Rebote",
+          thumbnail: "img/imageAct_1.jpg",
           duration: "Para Siempre"),
     ];
   }
