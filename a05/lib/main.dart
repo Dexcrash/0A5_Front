@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'assets/colors.dart';
 import 'Profile/ProfileView.dart';
+import 'Activity/ActivityView.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,6 +38,8 @@ class MyApp extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => MyHomePage(),
           '/home': (BuildContext context) => MyHomePage(),
+          '/activity': (BuildContext context) => ActivityView(),
+
         },
       ),
     );
@@ -69,6 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ProfileView()));
     }
+    if (_selectedIndex == 2) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ActivityView()));
+    }
   }
 
   @override
@@ -87,7 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           backgroundColor: $base,
-          title: Text("A05", style: TextStyle(color: $colorTitle)),
+          title: Center( child: 
+          
+          Text("A05",textAlign: TextAlign.center, style: TextStyle(color: $colorTitle))),
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
@@ -97,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )),
       body: new Column(
         children: <Widget>[
-          new Text('Reciente',
+          new Text('Reciente',textAlign: TextAlign.left,
               style: TextStyle(
                 color: $colorTitle,
                 fontSize: 30.0,
@@ -115,7 +124,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png'),
+                        Image.asset('img/img1.png',height: 100,
+                        fit:BoxFit.fill),
                         Text("Coordinación",
                             style: TextStyle(color: $colorTitle)),
                         Text("PRIMERA INFANCIA",
@@ -133,7 +143,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png'),
+                        Image.asset('img/img1.png',height: 100,
+                        fit:BoxFit.fill),
                         Text("Coordinación",
                             style: TextStyle(color: $colorTitle)),
                         Text("PRIMERA INFANCIA",
@@ -151,7 +162,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img2.png'),
+                        Image.asset('img/img2.png',height: 100,
+                        fit:BoxFit.fill),
                         Text("Coordinación",
                             style: TextStyle(color: $colorTitle)),
                         Text("PRIMERA INFANCIA",
@@ -169,7 +181,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png'),
+                        Image.asset('img/img1.png',height: 100,
+                        fit:BoxFit.fill),
                         Text("Coordinación",
                             style: TextStyle(color: $colorTitle)),
                         Text("PRIMERA INFANCIA",
@@ -184,10 +197,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
+
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png'),
+                        Image.asset('img/img1.png',
+                        height: 100,
+                        fit:BoxFit.fill),
+
                         Text("Coordinación",
                             style: TextStyle(color: $colorTitle)),
                         Text("PRIMERA INFANCIA",
@@ -199,40 +216,46 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          new Text('Hoy',
+          new Text('Hoy', textAlign: TextAlign.left,
               style: TextStyle(
                 color: $colorTitle,
                 fontSize: 30.0,
               )),
-          new SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  width: 450.0,
-                  height: 250.0,
-                  child: Card(
+          new Container(
+        child: Row(
+          children: <Widget>[
+            
+            Expanded(
+
+              child:    Container(
+  height: 200,
+  child:Card(
+                    
                       child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage("img/img3.png"),
+                        image: AssetImage("img/img3.png" ),
                         fit: BoxFit.fitWidth,
                         alignment: Alignment.topCenter,
                       ),
                     ),
                     child: Column(
+                     
                         mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment:  MainAxisAlignment.spaceAround,
                         children: <Widget>[
                           Text("Lenguaje",
                               style: TextStyle(
                                 color: $base,
                                 fontSize: 25.0,
                               )),
-                          Text("Entre 1 y 5 meses",
+                          Text("Entre 1 y 5 meses", 
+                        textAlign: TextAlign.start,
                               style: TextStyle(color: $base)),
                         ]),
                   )),
                 ),
+            ),
               ],
             ),
           ),
@@ -253,7 +276,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search, color: $colorSubtitle),
-            title: new Text(''),
+            title: new Text('Activity'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person, color: $colorSubtitle),
