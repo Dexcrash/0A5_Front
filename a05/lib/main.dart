@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'assets/colors.dart';
 import 'Profile/ProfileView.dart';
+import 'Actividad/ActividadDetalleView.dart';
 
 void main() => runApp(MyApp());
 
@@ -79,8 +80,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-
-    print(_selectedIndex);
     return Scaffold(
       backgroundColor: $secondary,
       appBar: AppBar(
