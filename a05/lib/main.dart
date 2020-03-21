@@ -5,6 +5,9 @@ import 'package:provider/provider.dart';
 import 'assets/colors.dart';
 import 'Profile/ProfileView.dart';
 import 'Actividad/ActividadDetalleView.dart';
+import 'Activity/ActivityView.dart';
+import 'package:a05/List/ActivitiesList.Dart';
+import 'package:a05/category/CategoriesView.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,6 +41,7 @@ class MyApp extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => MyHomePage(),
           '/home': (BuildContext context) => MyHomePage(),
+          '/activity': (BuildContext context) => ActivityView(),
         },
       ),
     );
@@ -70,6 +74,10 @@ class _MyHomePageState extends State<MyHomePage> {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ProfileView()));
     }
+    if (_selectedIndex == 2) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ActivityView()));
+    }
   }
 
   @override
@@ -85,28 +93,69 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          backgroundColor: $base,
-          title: Text("A05", style: TextStyle(color: $colorTitle)),
+          backgroundColor: Colors.orange,
+          title: Center(
+              child: Text("A05",
+                  textAlign: TextAlign.center, style: TextStyle(color: $base))),
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon: const Icon(Icons.menu, color: $colorTitle),
+                icon: const Icon(Icons.menu, color: $base),
               );
             },
           )),
       body: new Column(
         children: <Widget>[
-          new Text('Reciente',
-              style: TextStyle(
-                color: $colorTitle,
-                fontSize: 30.0,
+          SizedBox(height: 20),
+          Container(
+              alignment: Alignment.centerLeft,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(width: 20),
+                  new Text('Reciente',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: $colorTitle,
+                        fontSize: 30.0,
+                      )),
+                ],
               )),
+          SizedBox(height: 20),
           new SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: <Widget>[
                 SizedBox(
-                  height: 160,
+                  height: 120,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          //Carga la view de la categoria
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CategoriesView(
+                                  category: CategoriesView.getTestCategory())));
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: $base,
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset('img/img8.png',
+                              height: 80, fit: BoxFit.fill),
+                          Text("Habilidades de autoregulación",
+                              style: TextStyle(color: $colorTitle)),
+                          Text("3 a 5 años",
+                              style: TextStyle(color: $colorSubtitle)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -114,17 +163,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png'),
-                        Text("Coordinación",
+                        Image.asset('img/img1.png',
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades ejecutivas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("18 a 36 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -132,17 +182,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png'),
-                        Text("Coordinación",
+                        Image.asset('img/img2.png',
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades Linguisticas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("6 a 18 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -150,17 +201,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img2.png'),
-                        Text("Coordinación",
+                        Image.asset('img/img8.png',
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades de autoregulación",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("3 a 5 años",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -168,17 +220,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png'),
-                        Text("Coordinación",
+                        Image.asset('img/img1.png',
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades ejecutivas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("18 a 36 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -186,10 +239,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png'),
-                        Text("Coordinación",
+                        Image.asset('img/img2.png',
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades Linguisticas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("6 a 18 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
@@ -198,39 +252,51 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          new Text('Hoy',
-              style: TextStyle(
-                color: $colorTitle,
-                fontSize: 30.0,
+          SizedBox(height: 20),
+          Container(
+              alignment: Alignment.centerLeft,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(width: 20),
+                  new Text('Hoy',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: $colorTitle,
+                        fontSize: 30.0,
+                      )),
+                ],
               )),
-          new SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
+          SizedBox(height: 20),
+          new Container(
+            child: Row(
               children: <Widget>[
-                SizedBox(
-                  width: 450.0,
-                  height: 250.0,
-                  child: Card(
-                      child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("img/img3.png"),
-                        fit: BoxFit.fitWidth,
-                        alignment: Alignment.topCenter,
+                Expanded(
+                  child: Container(
+                    height: 200,
+                    child: Card(
+                        child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("img/img3.png"),
+                          fit: BoxFit.fitWidth,
+                          alignment: Alignment.topCenter,
+                        ),
                       ),
-                    ),
-                    child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text("Lenguaje",
-                              style: TextStyle(
-                                color: $base,
-                                fontSize: 25.0,
-                              )),
-                          Text("Entre 1 y 5 meses",
-                              style: TextStyle(color: $base)),
-                        ]),
-                  )),
+                      child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Text("Lenguaje",
+                                style: TextStyle(
+                                  color: $base,
+                                  fontSize: 25.0,
+                                )),
+                            Text("18 a 36 meses",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(color: $base)),
+                          ]),
+                    )),
+                  ),
                 ),
               ],
             ),
@@ -252,7 +318,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search, color: $colorSubtitle),
-            title: new Text(''),
+            title: new Text('Activity'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person, color: $colorSubtitle),
