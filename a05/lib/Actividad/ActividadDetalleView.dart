@@ -67,7 +67,8 @@ class ActividadDetalleViewState extends State<ActividadDetalleView> {
 
   //Pinta el resumen de actividades que dice actividades, el numero que va y el porcentaje
   Widget _buildBody(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
+      child:Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
@@ -155,6 +156,7 @@ Te abrazo, te abrazo en todas partes''',
           ),
         )
       ]),
+      ),
     );
   }
 }
