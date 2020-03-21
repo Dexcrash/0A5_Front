@@ -138,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: <Widget>[
                           Image.asset('img/img1.png',height: 100,
                           fit:BoxFit.fill),
-                          Text("Coordinación",
+                          Text("Lenguaje",
                               style: TextStyle(color: $colorTitle)),
                           Text("PRIMERA INFANCIA",
                               style: TextStyle(color: $colorSubtitle)),

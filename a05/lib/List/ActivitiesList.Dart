@@ -2,6 +2,7 @@ import 'package:a05/assets/colors.dart';
 import 'package:flutter/material.dart';
 import 'ListActivity.dart';
 import '../main.dart';
+import 'package:a05/Activity/ActivityView.dart';
 
 const mainColor = Colors.orange;
 
@@ -49,7 +50,6 @@ class ActivitiesList extends StatefulWidget {
 }
 
 class _ActivitiesListState extends State<ActivitiesList> {
-
   @override
   Widget build(BuildContext context) {
     return _buildList(context);
@@ -116,7 +116,16 @@ class _ActivitiesListState extends State<ActivitiesList> {
               // crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(Icons.timer, color: Colors.grey),
+                IconButton(
+                  icon: Icon(Icons.timer, color: Colors.grey),
+                  //Navegar al activity detail
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ActivityView()));
+                  },
+                ),
                 Text(activity.duration)
               ],
             ),

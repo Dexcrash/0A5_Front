@@ -76,7 +76,7 @@ class CategoriesViewState extends State<CategoriesView> {
           //Descripcion
           Container(
             padding: const EdgeInsets.all(16.0),
-            width: cWidth,
+            width: cWidth*1.2,
             child: Text(
               widget.category.description,
               style: TextStyle(
@@ -100,8 +100,29 @@ class CategoriesView extends StatefulWidget {
 
   static Category getTestCategory() {
     return Category(
-        description:
-            "DESCRIPCION LARGA: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi., ",
+        description: "Hablar de lenguaje sería similar a " + 
+        "hablar de un gran almacén de conceptos, ideas y significados que desde el " + 
+        "momento del nacimiento los niños van almacenando y organizando como si de una " + 
+        "biblioteca se tratara. A partir de esta biblioteca, encontramos la habilidad de " + 
+        "escuchar, ordenar y añadir nuevas ideas (lenguaje comprensivo) o la habilidad de " + 
+        "expresar y comunicarlas (lenguaje expresivo).\n" + 
+        "Antes de la comprensión de cuentos o historias, hay muchas otras muestras de " + 
+        "lenguaje comprensivo que podemos llegar a trabajar con los más pequeños de la " + 
+        "casa, como la denominación de palabras o, incluso, las onomatopeyas. Rimas y " + 
+        "poemas, rebotes, cosquillas, juegos con los dedos y los juegos de movimiento son " + 
+        "una excelente manera de comenzar a ayudar a los niños desarrollan estas " + 
+        "habilidades; además de ser divertidos, también enriquezca la experiencia " + 
+        "de aprendizaje temprano de su hijo al:\n\n" + 
+        "\t\t• habilidades de memoria\n" +
+        "\t\t• Vocabulario\n" +
+        "\t\t• Imaginación\n" +
+        "\t\t• Sentido del humor\n" +
+        "\t\t• Conciencia espacial\n" +
+        "\t\t• Coordinación motriz\n" +
+        "\t\t• Capacidad para relajarse\n\n" +
+        "Juegos, rimas, meneos y cosquillas han inspirado risas y alegría en bebés, " + 
+        "niños pequeños y niños pequeños para generaciones, fortaleciendo los lazos " + 
+        "entre los niños y los seres queridos en sus vidas. ",
         name: "Lenguaje",
         picturePath: "img/img4.png");
   }
