@@ -1,3 +1,4 @@
+import 'package:a05/Actividad/ActividadDetalleView.dart';
 import 'package:a05/main.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -8,16 +9,7 @@ class ActivityViewState extends State<ActivityView> {
   int _selectedIndex = 3;
   String nameAct ="Coordinación I";
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-     
-    });
-    if (_selectedIndex == 0) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHomePage()));
-    }
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -106,10 +98,19 @@ Text("TIPOS",
 
 
 ],),
+
 IconButton(
           icon: Icon(Icons.play_circle_filled , size: 80.0),
           color: Colors.orange,
-          onPressed: () {},
+          
+          onPressed: ()  {
+                      Navigator.push(
+                          //Carga la view de la categoria
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ActividadDetalleView()));
+                    },
+                   
         ),
       
 
