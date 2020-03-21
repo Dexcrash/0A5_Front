@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'assets/colors.dart';
 import 'Profile/ProfileView.dart';
 import 'Activity/ActivityView.dart';
+import 'package:a05/List/ActivitiesList.Dart';
+import 'package:a05/category/CategoriesView.dart';
 
 void main() => runApp(MyApp());
 
@@ -78,6 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -117,20 +121,29 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 SizedBox(
                   height: 160,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    color: $base,
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset('img/img1.png',height: 100,
-                        fit:BoxFit.fill),
-                        Text("Coordinación",
-                            style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
-                            style: TextStyle(color: $colorSubtitle)),
-                      ],
+                  child: InkWell(
+                    onTap: (){
+                      Navigator.push(
+                        //Carga la view de la categoria
+                        context, MaterialPageRoute(builder: (context) => CategoriesView(category: CategoriesView.getTestCategory())
+                        )
+                      );
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: $base,
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset('img/img1.png',height: 100,
+                          fit:BoxFit.fill),
+                          Text("Coordinación",
+                              style: TextStyle(color: $colorTitle)),
+                          Text("PRIMERA INFANCIA",
+                              style: TextStyle(color: $colorSubtitle)),
+                        ],
+                      ),
                     ),
                   ),
                 ),

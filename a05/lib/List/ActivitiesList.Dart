@@ -1,7 +1,11 @@
+import 'package:a05/assets/colors.dart';
 import 'package:flutter/material.dart';
 import 'ListActivity.dart';
+import '../main.dart';
 
-/// Carga una list view con las actividades que le pasan por parametro al 
+const mainColor = Colors.orange;
+
+/// Carga una list view con las actividades que le pasan por parametro al
 /// inicializar el widget
 class ActivitiesList extends StatefulWidget {
   final List<ListActivity> activities;
@@ -16,17 +20,17 @@ class ActivitiesList extends StatefulWidget {
   static List<ListActivity> generateTestActivities() {
     return [
       ListActivity(
-          activityCategory: "Cognitivo",
+          activityCategory: "Lenguaje",
           activityName: "Contar Numeritos",
           thumbnail: "img/imageAct_1.jpg",
           duration: "5 min"),
       ListActivity(
-          activityCategory: "Cognitivo",
+          activityCategory: "Lenguaje",
           activityName: "Contar Dedos",
           thumbnail: "img/imageAct_1.jpg",
           duration: "6 min"),
       ListActivity(
-          activityCategory: "Cognitivo",
+          activityCategory: "Lenguaje",
           activityName: "Contar Cubos",
           thumbnail: "img/imageAct_1.jpg",
           duration: "8 min"),
@@ -34,15 +38,21 @@ class ActivitiesList extends StatefulWidget {
           activityCategory: "Lenguaje",
           activityName: "Rebote Rebote",
           thumbnail: "img/imageAct_1.jpg",
+          duration: "2 min"),
+      ListActivity(
+          activityCategory: "Lenguaje",
+          activityName: "Ruso",
+          thumbnail: "img/imageAct_1.jpg",
           duration: "Para Siempre"),
     ];
   }
 }
 
 class _ActivitiesListState extends State<ActivitiesList> {
+
   @override
   Widget build(BuildContext context) {
-    return (_buildList(context));
+    return _buildList(context);
   }
 
   Widget _buildList(BuildContext context) {
