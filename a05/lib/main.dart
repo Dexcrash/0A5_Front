@@ -97,30 +97,41 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          backgroundColor: $base,
+          backgroundColor: Colors.orange,
           title: Center( child: 
           
-          Text("A05",textAlign: TextAlign.center, style: TextStyle(color: $colorTitle))),
+          Text("A05",textAlign: TextAlign.center, style: TextStyle(color: $base))),
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon: const Icon(Icons.menu, color: $colorTitle),
+                icon: const Icon(Icons.menu, color: $base),
               );
             },
           )),
       body: new Column(
         children: <Widget>[
-          new Text('Reciente',textAlign: TextAlign.left,
+
+          SizedBox(height: 20),
+Container(
+             alignment: Alignment.centerLeft,
+             child: Row(children: <Widget>[
+               SizedBox(width: 20),
+ new Text('Reciente',textAlign: TextAlign.left,
               style: TextStyle(
                 color: $colorTitle,
                 fontSize: 30.0,
-              )),
+              )), 
+             ],)
+           ),
+SizedBox(height: 20),
+          
           new SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: <Widget>[
+               
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: InkWell(
                     onTap: (){
                       Navigator.push(
@@ -129,26 +140,26 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       );
                     },
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      color: $base,
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset('img/img1.png',height: 100,
-                          fit:BoxFit.fill),
-                          Text("Lenguaje",
-                              style: TextStyle(color: $colorTitle)),
-                          Text("PRIMERA INFANCIA",
-                              style: TextStyle(color: $colorSubtitle)),
-                        ],
-                      ),
+                    child:Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
+                    color: $base,
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset('img/img8.png',height: 80,
+                        fit:BoxFit.fill),
+                        Text("Habilidades de autoregulación",
+                            style: TextStyle(color: $colorTitle)),
+                        Text("3 a 5 años",
+                            style: TextStyle(color: $colorSubtitle)),
+                      ],
+                    ),
+                  ),
                   ),
                 ),
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -156,18 +167,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png',height: 100,
+                        Image.asset('img/img1.png',height: 80,
                         fit:BoxFit.fill),
-                        Text("Coordinación",
+                        Text("Habilidades ejecutivas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("18 a 36 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -175,18 +186,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img2.png',height: 100,
+                        Image.asset('img/img2.png',height: 80,
                         fit:BoxFit.fill),
-                        Text("Coordinación",
+                        Text("Habilidades Linguisticas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("6 a 18 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -194,33 +205,49 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png',height: 100,
+                        Image.asset('img/img8.png',height: 80,
                         fit:BoxFit.fill),
-                        Text("Coordinación",
+                        Text("Habilidades de autoregulación",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("3 a 5 años",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png',
-                        height: 100,
+                        Image.asset('img/img1.png',height: 80,
                         fit:BoxFit.fill),
-
-                        Text("Coordinación",
+                        Text("Habilidades ejecutivas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("18 a 36 meses",
+                            style: TextStyle(color: $colorSubtitle)),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    color: $base,
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset('img/img2.png',height: 80,
+                        fit:BoxFit.fill),
+                        Text("Habilidades Linguisticas",
+                            style: TextStyle(color: $colorTitle)),
+                        Text("6 a 18 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
@@ -229,11 +256,20 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          new Text('Hoy', textAlign: TextAlign.left,
+          SizedBox(height: 20),
+Container(
+             alignment: Alignment.centerLeft,
+             child: Row(children: <Widget>[
+               SizedBox(width: 20),
+ new Text('Hoy', textAlign: TextAlign.left,
               style: TextStyle(
                 color: $colorTitle,
                 fontSize: 30.0,
               )),
+             ],)
+           ),
+SizedBox(height: 20),
+          
           new Container(
         child: Row(
           children: <Widget>[
@@ -262,7 +298,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: $base,
                                 fontSize: 25.0,
                               )),
-                          Text("Entre 1 y 5 meses", 
+                          Text("18 a 36 meses", 
                         textAlign: TextAlign.start,
                               style: TextStyle(color: $base)),
                         ]),
