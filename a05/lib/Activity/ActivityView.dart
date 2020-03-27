@@ -1,3 +1,4 @@
+import 'package:a05/Actividad/ActividadDetalleView.dart';
 import 'package:a05/main.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -8,16 +9,7 @@ class ActivityViewState extends State<ActivityView> {
   int _selectedIndex = 3;
   String nameAct ="Coordinación I";
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-     
-    });
-    if (_selectedIndex == 0) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHomePage()));
-    }
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +19,7 @@ class ActivityViewState extends State<ActivityView> {
     return Scaffold(
       backgroundColor: $base,
       appBar: AppBar(
-        backgroundColor: $scaffoldBackground,
+        backgroundColor: Colors.orange,
         iconTheme: IconThemeData(
     color: $base
   ),
@@ -35,32 +27,7 @@ class ActivityViewState extends State<ActivityView> {
     color: $base
   )),
       ),
-      body: _buildBody(context),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex:
-            _selectedIndex, // this will be set when a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.home, color: $colorSubtitle),
-            title:
-                new Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.show_chart, color: $colorSubtitle),
-            title: new Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: $scaffoldBackground),
-            title: new Text('Activity', style: TextStyle(color:$scaffoldBackground)),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: $colorSubtitle),
-            title: new Text('',
-                style: TextStyle(color: $colorSubtitle)),
-          ),
-        ],
-        onTap: _onItemTapped,
-      ),
+      body: _buildBody(context)
    
     );
   }
@@ -99,7 +66,7 @@ SizedBox(height: 10),
           shape: BoxShape.circle,
           image: new DecorationImage(
           fit: BoxFit.fill,
-          image: AssetImage("img/img3.png" )
+          image: AssetImage("img/img7.png" )
 
 )),
                               ),
@@ -122,7 +89,7 @@ Text("TIPOS",
                               style: TextStyle(color: $colorSubtitle, fontWeight: FontWeight.bold)),
                               SizedBox(height: 10),
                               
-                              Text("Coordinación", 
+                              Text("Autoregulación", 
                         textAlign: TextAlign.start,
                               style: TextStyle(color: $colorSubtitle)),
                               Text("Lenguaje", 
@@ -131,10 +98,19 @@ Text("TIPOS",
 
 
 ],),
+
 IconButton(
           icon: Icon(Icons.play_circle_filled , size: 80.0),
-          color: $scaffoldBackground,
-          onPressed: () {},
+          color: Colors.orange,
+          
+          onPressed: ()  {
+                      Navigator.push(
+                          //Carga la view de la categoria
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ActividadDetalleView()));
+                    },
+                   
         ),
       
 
@@ -172,7 +148,7 @@ SizedBox(height: 10),
 Container(
              alignment: Alignment.centerLeft,
              child: Row(children: <Widget>[
-               SizedBox(width: 10),
+               SizedBox(width: 20),
  new Text("Actividades Relacionadas", textAlign: TextAlign.left,
                               style: TextStyle(color: $black, fontWeight: FontWeight.bold))    
           
@@ -192,11 +168,11 @@ new SingleChildScrollView(
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png',height: 80,
+                        Image.asset('img/img8.png',height: 80,
                         fit:BoxFit.fill),
-                        Text("Coordinación",
+                        Text("Habilidades de autoregulación",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("3 a 5 años",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
@@ -213,9 +189,9 @@ new SingleChildScrollView(
                       children: <Widget>[
                         Image.asset('img/img1.png',height: 80,
                         fit:BoxFit.fill),
-                        Text("Coordinación",
+                        Text("Habilidades ejecutivas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("18 a 36 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
@@ -232,9 +208,28 @@ new SingleChildScrollView(
                       children: <Widget>[
                         Image.asset('img/img2.png',height: 80,
                         fit:BoxFit.fill),
-                        Text("Coordinación",
+                        Text("Habilidades Linguisticas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("6 a 18 meses",
+                            style: TextStyle(color: $colorSubtitle)),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    color: $base,
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset('img/img8.png',height: 80,
+                        fit:BoxFit.fill),
+                        Text("Habilidades de autoregulación",
+                            style: TextStyle(color: $colorTitle)),
+                        Text("3 a 5 años",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
@@ -251,9 +246,9 @@ new SingleChildScrollView(
                       children: <Widget>[
                         Image.asset('img/img1.png',height: 80,
                         fit:BoxFit.fill),
-                        Text("Coordinación",
+                        Text("Habilidades ejecutivas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("18 a 36 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
@@ -265,17 +260,14 @@ new SingleChildScrollView(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-
                     color: $base,
                     child: Column(
                       children: <Widget>[
-                        Image.asset('img/img1.png',
-                        height: 80,
+                        Image.asset('img/img2.png',height: 80,
                         fit:BoxFit.fill),
-
-                        Text("Coordinación",
+                        Text("Habilidades Linguisticas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("6 a 18 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
@@ -288,13 +280,25 @@ new SingleChildScrollView(
            Container(
              alignment: Alignment.centerLeft,
              child: Row(children: <Widget>[
-               SizedBox(width: 10),
- new Text("Calificaciones", textAlign: TextAlign.left,
-                              style: TextStyle(color: $black, fontWeight: FontWeight.bold))    
+               SizedBox(width: 20),
           
+             Row(children: <Widget>[
+new Text("Calificaciones", textAlign: TextAlign.left,
+                              style: TextStyle(color: $black, fontWeight: FontWeight.bold))    
+ ,SizedBox(width: 150),
+new Text("Añadir", textAlign: TextAlign.left,
+
+                              style: TextStyle(color: $black)),
+                              Icon(Icons.create, color: $colorSubtitle),
+                              
+                                ],)
+             
+             
+             
+             
              ],)
            ),Container(
-  height: 100,
+  height: 150,
   child: new  ListView(
   children: <Widget>[
     ListTile(
@@ -337,14 +341,14 @@ SizedBox(height: 10),
           shape: BoxShape.circle,
           image: new DecorationImage(
           fit: BoxFit.fill,
-          image: AssetImage("img/person1.png" )
+          image: AssetImage("img/img3.png" )
 
 ))),
       title: Container(
              alignment: Alignment.bottomLeft,
              child: Column(children: <Widget>[
                                 Row(children: <Widget>[
-new Text("Camila Gutierrez", textAlign: TextAlign.left,
+new Text("Santiago Rodriguez", textAlign: TextAlign.left,
                               style: TextStyle(color: $black)),
 SizedBox(width: 50),
 new Text("4.5", textAlign: TextAlign.left,
@@ -399,14 +403,14 @@ SizedBox(height: 10),
           shape: BoxShape.circle,
           image: new DecorationImage(
           fit: BoxFit.fill,
-          image: AssetImage("img/person1.png" )
+          image: AssetImage("img/img3.png" )
 
 ))),
       title: Container(
              alignment: Alignment.bottomLeft,
              child: Column(children: <Widget>[
                                 Row(children: <Widget>[
-new Text("Camila Gutierrez", textAlign: TextAlign.left,
+new Text("Santiago Rodriguez", textAlign: TextAlign.left,
                               style: TextStyle(color: $black)),
 SizedBox(width: 50),
 new Text("4.5", textAlign: TextAlign.left,

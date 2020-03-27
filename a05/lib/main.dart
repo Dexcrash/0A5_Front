@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'assets/colors.dart';
 import 'Profile/ProfileView.dart';
+import 'Actividad/ActividadDetalleView.dart';
 import 'Activity/ActivityView.dart';
 import 'package:a05/List/ActivitiesList.Dart';
 import 'package:a05/category/CategoriesView.dart';
@@ -41,7 +42,6 @@ class MyApp extends StatelessWidget {
           '/': (BuildContext context) => MyHomePage(),
           '/home': (BuildContext context) => MyHomePage(),
           '/activity': (BuildContext context) => ActivityView(),
-
         },
       ),
     );
@@ -80,8 +80,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -90,44 +88,53 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-
-    print(_selectedIndex);
     return Scaffold(
       backgroundColor: $secondary,
       appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          backgroundColor: $base,
-          title: Center( child: 
-          
-          Text("A05",textAlign: TextAlign.center, style: TextStyle(color: $colorTitle))),
+          backgroundColor: Colors.orange,
+          title: Center(
+              child: Text("A05",
+                  textAlign: TextAlign.center, style: TextStyle(color: $base))),
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon: const Icon(Icons.menu, color: $colorTitle),
+                icon: const Icon(Icons.menu, color: $base),
               );
             },
           )),
       body: new Column(
         children: <Widget>[
-          new Text('Reciente',textAlign: TextAlign.left,
-              style: TextStyle(
-                color: $colorTitle,
-                fontSize: 30.0,
+          SizedBox(height: 20),
+          Container(
+              alignment: Alignment.centerLeft,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(width: 20),
+                  new Text('Reciente',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: $colorTitle,
+                        fontSize: 30.0,
+                      )),
+                ],
               )),
+          SizedBox(height: 20),
           new SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: <Widget>[
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: InkWell(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
-                        //Carga la view de la categoria
-                        context, MaterialPageRoute(builder: (context) => CategoriesView(category: CategoriesView.getTestCategory())
-                        )
-                      );
+                          //Carga la view de la categoria
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CategoriesView(
+                                  category: CategoriesView.getTestCategory())));
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -136,11 +143,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: $base,
                       child: Column(
                         children: <Widget>[
-                          Image.asset('img/img1.png',height: 100,
-                          fit:BoxFit.fill),
-                          Text("Lenguaje",
+                          Image.asset('img/img8.png',
+                              height: 80, fit: BoxFit.fill),
+                          Text("Habilidades de autoregulación",
                               style: TextStyle(color: $colorTitle)),
-                          Text("PRIMERA INFANCIA",
+                          Text("3 a 5 años",
                               style: TextStyle(color: $colorSubtitle)),
                         ],
                       ),
@@ -148,79 +155,95 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: 160,
+                  height: 120,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    color: $base,
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset('img/img1.png',height: 100,
-                        fit:BoxFit.fill),
-                        Text("Coordinación",
-                            style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
-                            style: TextStyle(color: $colorSubtitle)),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 160,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    color: $base,
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset('img/img2.png',height: 100,
-                        fit:BoxFit.fill),
-                        Text("Coordinación",
-                            style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
-                            style: TextStyle(color: $colorSubtitle)),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 160,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    color: $base,
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset('img/img1.png',height: 100,
-                        fit:BoxFit.fill),
-                        Text("Coordinación",
-                            style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
-                            style: TextStyle(color: $colorSubtitle)),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 160,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-
                     color: $base,
                     child: Column(
                       children: <Widget>[
                         Image.asset('img/img1.png',
-                        height: 100,
-                        fit:BoxFit.fill),
-
-                        Text("Coordinación",
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades ejecutivas",
                             style: TextStyle(color: $colorTitle)),
-                        Text("PRIMERA INFANCIA",
+                        Text("18 a 36 meses",
+                            style: TextStyle(color: $colorSubtitle)),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    color: $base,
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset('img/img2.png',
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades Linguisticas",
+                            style: TextStyle(color: $colorTitle)),
+                        Text("6 a 18 meses",
+                            style: TextStyle(color: $colorSubtitle)),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    color: $base,
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset('img/img8.png',
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades de autoregulación",
+                            style: TextStyle(color: $colorTitle)),
+                        Text("3 a 5 años",
+                            style: TextStyle(color: $colorSubtitle)),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    color: $base,
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset('img/img1.png',
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades ejecutivas",
+                            style: TextStyle(color: $colorTitle)),
+                        Text("18 a 36 meses",
+                            style: TextStyle(color: $colorSubtitle)),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 120,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    color: $base,
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset('img/img2.png',
+                            height: 80, fit: BoxFit.fill),
+                        Text("Habilidades Linguisticas",
+                            style: TextStyle(color: $colorTitle)),
+                        Text("6 a 18 meses",
                             style: TextStyle(color: $colorSubtitle)),
                       ],
                     ),
@@ -229,46 +252,52 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          new Text('Hoy', textAlign: TextAlign.left,
-              style: TextStyle(
-                color: $colorTitle,
-                fontSize: 30.0,
+          SizedBox(height: 20),
+          Container(
+              alignment: Alignment.centerLeft,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(width: 20),
+                  new Text('Hoy',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: $colorTitle,
+                        fontSize: 30.0,
+                      )),
+                ],
               )),
+          SizedBox(height: 20),
           new Container(
-        child: Row(
-          children: <Widget>[
-            
-            Expanded(
-
-              child:    Container(
-  height: 200,
-  child:Card(
-                    
-                      child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("img/img3.png" ),
-                        fit: BoxFit.fitWidth,
-                        alignment: Alignment.topCenter,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    height: 200,
+                    child: Card(
+                        child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("img/img3.png"),
+                          fit: BoxFit.fitWidth,
+                          alignment: Alignment.topCenter,
+                        ),
                       ),
-                    ),
-                    child: Column(
-                     
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment:  MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Text("Lenguaje",
-                              style: TextStyle(
-                                color: $base,
-                                fontSize: 25.0,
-                              )),
-                          Text("Entre 1 y 5 meses", 
-                        textAlign: TextAlign.start,
-                              style: TextStyle(color: $base)),
-                        ]),
-                  )),
+                      child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Text("Lenguaje",
+                                style: TextStyle(
+                                  color: $base,
+                                  fontSize: 25.0,
+                                )),
+                            Text("18 a 36 meses",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(color: $base)),
+                          ]),
+                    )),
+                  ),
                 ),
-            ),
               ],
             ),
           ),
