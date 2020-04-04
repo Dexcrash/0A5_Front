@@ -31,6 +31,13 @@ def getCategorias():
         returnList.append(vars(c))
     return jsonify(returnList)
 
+# Route: /categorias/<id_categoria>
+@app.route('/categorias/<int:id_cat>', methods=['GET'])
+def get_cat_byId(id_cat):
+    dao = CategoriaDAO()
+    
+    return vars(dao.get_by_id(id_cat))
+
 # Route: /categorias/<id>/ejercicios
 
 # GET
@@ -62,6 +69,16 @@ def create_ejercicio_kid():
     dao.create_from_request(request)
     return vars(dao.add_to_db(dao))
     
+
+# Route /ejercicio_kid/<id_kid>
+# GET
+@app.route('/ejercicio_kid/<id_kid>', methods=['GET'])
+def get_ejercicio_kid_by_kid(id_kid):
+    dao = Ejercicio_KidDAO()
+    returnList = []
+    for d in dao.get_by_kid_all(id_kid):
+        returnList.append(vars(d))
+    return jsonify(returnList)
 
 
 # Route /kids

@@ -29,7 +29,8 @@ class CategoriaDAO:
 
     def get_by_id(self, p_id):
         cat = db.categorias.find_one({'id': p_id})
-        return self.create_from_doc(cat)
+        self.create_from_doc(cat)
+        return self
 
     def get_all(self):
         print('getting all categories, yay')
@@ -46,12 +47,13 @@ class CategoriaDAO:
 class EjercicioDAO:
 
     def create_from_doc(self, doc):
-        self.id = doc['id']
+        self.id = str(doc['_id'])
         self.id_cat = doc['id_cat']
         self.nombre = doc['nombre']
         self.descripcion = doc['descripcion']
         self.video_url = doc['video_url']
         self.foto_url = doc['foto_url']
+        self.duracion = doc['duracion']
 
     def create_from_request(self, request):
         self.id = -1
@@ -60,6 +62,7 @@ class EjercicioDAO:
         self.descripcion = request.json['descripcion']
         self.video_url = request.json['video_url']
         self.foto_url = request.json['foto_url']
+        self.duracion = request.json['duracion']
 
     def get_by_id(self, p_id):
         cat = db.ejercicios.find_one({'id': p_id})
