@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from flask import request
 from datetime import datetime
+from bson import ObjectId
 
 
 client = MongoClient(
@@ -47,7 +48,7 @@ class CategoriaDAO:
 class EjercicioDAO:
 
     def create_from_doc(self, doc):
-        self.id = str(doc['_id'])
+        self._id = str(doc['_id'])
         self.id_cat = doc['id_cat']
         self.nombre = doc['nombre']
         self.descripcion = doc['descripcion']
@@ -56,7 +57,6 @@ class EjercicioDAO:
         self.duracion = doc['duracion']
 
     def create_from_request(self, request):
-        self.id = -1
         self.id_cat = request.json['id_cat']
         self.nombre = request.json['nombre'],
         self.descripcion = request.json['descripcion']
@@ -64,9 +64,10 @@ class EjercicioDAO:
         self.foto_url = request.json['foto_url']
         self.duracion = request.json['duracion']
 
-    def get_by_id(self, p_id):
-        cat = db.ejercicios.find_one({'id': p_id})
-        return self.create_from_doc(cat)
+    def get_by_id(self, _id):
+        cat = db.ejercicios.find_one({'_id': ObjectId(_id)})
+        self.create_from_doc(cat)
+        return self
 
     def get_all(self):
         print('getting all excercizsesese, yay')

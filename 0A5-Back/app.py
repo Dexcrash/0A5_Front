@@ -50,6 +50,27 @@ def get_ejercicios_categoria(id_cat):
         returnList.append(vars(c))
     return jsonify(returnList)
 
+
+# Route /ejercicios
+# Get
+# Obtinene el ejercicio con el id
+@app.route('/ejercicios', methods=['GET'])
+def get_ejercicios():
+    dao = EjercicioDAO()
+    returnList = []
+    for c in dao.get_all():
+        returnList.append(vars(c))
+    return jsonify(returnList)
+
+
+# Route /ejercicios/<id_ejercicio>
+# Get
+# Obtinene el ejercicio con el id
+@app.route('/ejercicios/<id_ejercicio>', methods=['GET'])
+def get_ejercicio_id(id_ejercicio):
+    dao = EjercicioDAO()
+    return vars(dao.get_by_id(id_ejercicio))
+
 # ROute /ejercicio_kid
 # GET
 #Obtiene la lista de ejercicio_kid
