@@ -160,7 +160,7 @@ def get_recommended_kid(id_kid):
     date = datetime.strftime(datetime.min, DAOs.date_format)
     ejercicios = dao.get_by_kid_week(id_kid, date)
     count, avg = ejercicios_por_ejercicio_promedio(ejercicios)
-    idList = recomend_ejericios(count, avg, 3)
+    idList = recomend_ejericios(count, avg, 6)
     print("idList")
     pprint(idList)
     returnList = []
