@@ -163,8 +163,8 @@ def get_recommended_kid(id_kid):
     ejercicios = dao.get_by_kid_week(id_kid, date)
     count, avg = ejercicios_por_ejercicio_promedio(ejercicios)
     idList = recomend_ejericios(count, avg, 6)
-    print("idList")
-    pprint(idList)
+    # print("idList")
+    # pprint(idList)
     returnList = []
     for ejer_id in idList:
         returnList.append(vars(ejer_dao.get_by_id(ejer_id)))
@@ -186,7 +186,7 @@ def contar_ejercicios_por_categoria(p_ejercicios):
         else:
             categorias[ek_cat] = 1
 
-    print(categorias)
+    # print(categorias)
     return categorias
 
 
@@ -202,8 +202,8 @@ def ejercicios_por_ejercicio_promedio(p_ejercicios):
         avg[ek._id] = avg[ek.id_ejercicio] * count[ek.id_ejercicio] + ek.rating
         count[ek._id] = count[ek.id_ejercicio] + 1
 
-    pprint(count)
-    pprint(avg)
+    # pprint(count)
+    # pprint(avg)
     return count, avg
 
 
