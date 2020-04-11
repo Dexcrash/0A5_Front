@@ -145,6 +145,7 @@ def get_count_ejercicios_categoria_kid_from_date(id_kid, date):
 def get_count_ejercicios_categoria_kid(id_kid):
     dao = Ejercicio_KidDAO()
     date = datetime.strftime(datetime.min, DAOs.date_format)
+    date = '01-01-2000'
     ejercicios = dao.get_by_kid_week(id_kid, date)
     count = contar_ejercicios_por_categoria(ejercicios)
     return jsonify(count)
@@ -157,7 +158,8 @@ def get_count_ejercicios_categoria_kid(id_kid):
 def get_recommended_kid(id_kid):
     dao = Ejercicio_KidDAO()
     ejer_dao = EjercicioDAO()
-    date = datetime.strftime(datetime.min, DAOs.date_format)
+    # date = datetime.strftime(datetime.min, DAOs.date_format)
+    date = '01-01-2000'
     ejercicios = dao.get_by_kid_week(id_kid, date)
     count, avg = ejercicios_por_ejercicio_promedio(ejercicios)
     idList = recomend_ejericios(count, avg, 6)
