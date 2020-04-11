@@ -18,6 +18,7 @@ class ActivitiesList extends StatefulWidget {
   @override
   _ActivitiesListState createState() => _ActivitiesListState();
 
+
   static List<ListActivity> generateTestActivities() {
     return [
       ListActivity(
