@@ -4,6 +4,7 @@ from datetime import datetime
 from bson import ObjectId
 
 
+
 client = MongoClient(
     "mongodb+srv://admin:adminPass@cluster0-e8ksn.mongodb.net/test?retryWrites=true&w=majority")
 db = client.db0a5
@@ -66,8 +67,9 @@ class EjercicioDAO:
 
     def get_by_id(self, _id):
         cat = db.ejercicios.find_one({'_id': ObjectId(_id)})
-        self.create_from_doc(cat)
-        return self
+        dao = EjercicioDAO()
+        dao.create_from_doc(cat)
+        return dao
 
     def get_all(self):
         print('getting all excercizsesese, yay')
@@ -151,3 +153,19 @@ class Ejercicio_KidDAO:
         obj = Ejercicio_KidDAO()
         obj.create_from_doc(doc)
         return obj
+
+    def get_by_kid_week(self, id_kid, from_date):
+        parsed_from_date = datetime.strptime(from_date, date_format)
+        print(parsed_from_date)
+        docs = db.ejercicio_kid.find({
+            'fecha': 
+                { "$gte":parsed_from_date }
+            })
+        returnList = []
+        for d in list(docs):
+            newObj = Ejercicio_KidDAO()
+            newObj.create_from_doc(d)
+            returnList.append(newObj)
+        return returnList
+
+
