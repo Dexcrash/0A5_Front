@@ -227,7 +227,7 @@ elements.add(_buildElement(categories[i]));
 
 
  Widget _buildElement(CategoryC category) {
-
+print(category.id);
 return SizedBox(
                   height: 120,
                   child: InkWell(
@@ -237,7 +237,7 @@ return SizedBox(
                           context,
                           MaterialPageRoute(
                               builder: (context) => CategoriesView(
-                                  id: "1",
+                                  id: category.id,
                                   
                                   )
                                   

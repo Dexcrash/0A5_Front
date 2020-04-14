@@ -9,8 +9,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' show json;
 
 
-Future<CategoryC> fetchCategory(String id) async {
-  final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/1');
+Future<CategoryC> fetchCategory(int id) async {
+  print('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/'+ id.toString());
+  final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/'+ id.toString());
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -23,7 +24,7 @@ Future<CategoryC> fetchCategory(String id) async {
   }
 }
 
-Future<List<ListActivity>> fetchActivities(String id) async {
+Future<List<ListActivity>> fetchActivities(int id) async {
   final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/1/ejercicios');
 
   if (response.statusCode == 200) {
@@ -182,7 +183,7 @@ class CategoriesView extends StatefulWidget {
   @override
   CategoriesViewState createState() => CategoriesViewState();
 
-  final String id;
+  final int id;
 
   CategoriesView({ @required this.id });
 
@@ -222,7 +223,7 @@ factory CategoryC.vacio(){
   factory CategoryC.fromJson(Map<String, dynamic> json) {
     return CategoryC(
       description: json['descripcion'],
-      id: json['_id'],
+      id: json['id'],
       picturePath: json['foto_url'],
       motivacion: json['motivacion'],
       name: json['nombre'],
