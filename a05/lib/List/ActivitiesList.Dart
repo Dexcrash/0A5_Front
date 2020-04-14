@@ -88,6 +88,10 @@ class _ActivitiesListState extends State<ActivitiesList> {
       color: Colors.black54, blurRadius: 4.0, offset: Offset(1.75, 1.75));
 
   Widget _buildTile(ListActivity activity) {
+    print(activity.activityName);
+    print(activity.activityCategory);
+    print(activity.duration);
+    
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,

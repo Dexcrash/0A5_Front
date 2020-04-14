@@ -28,16 +28,17 @@ Future<List<ListActivity>> fetchActivities(String id) async {
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    return parseProducts((response.body));
+    return parseActivities((response.body));
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
     throw Exception('Failed to load category');
   }
 }
-List<ListActivity> parseProducts(String responseBody) { 
+List<ListActivity> parseActivities(String responseBody) { 
    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>(); 
-   return parsed.map<ListActivity>((json) =>ListActivity.fromJson(json)).toList(); 
+  var u= parsed.map<ListActivity>((json) =>ListActivity.fromJson(json)).toList(); 
+   return u;
 } 
 
 
@@ -70,7 +71,9 @@ Future<List<ListActivity>> factividades;
       child: new Container(
         child: new FutureBuilder(
   future: Future.wait([fcategory, factividades]).then(
-    (response) => new CategoryGeneral(category: response[0], actividades: response[1]),
+    (response){
+      return new CategoryGeneral(category: response[0], actividades: response[1]);
+    } 
   ),
   builder: (context, snapshot) {
     if (snapshot.hasData) {
@@ -89,7 +92,7 @@ Future<List<ListActivity>> factividades;
             //Detalles
             _buildCategoryDetail(context, snapshot),
             //Lista
-            ActivitiesList(activities:snapshot.data.actividades)
+            ActivitiesList(activities: snapshot.data.actividades)
           ],
         ),
         //bottomNavigationBar: ,
