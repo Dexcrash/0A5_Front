@@ -68,8 +68,7 @@ Future<List<ListActivity>> factividades;
   Widget _buildTabBar(BuildContext context) {
     return (DefaultTabController(
       length: 2,
-      child: new Container(
-        child: new FutureBuilder(
+      child:  new FutureBuilder(
   future: Future.wait([fcategory, factividades]).then(
     (response){
       return new CategoryGeneral(category: response[0], actividades: response[1]);
@@ -92,7 +91,7 @@ Future<List<ListActivity>> factividades;
             //Detalles
             _buildCategoryDetail(context, snapshot),
             //Lista
-            ActivitiesList(activities: snapshot.data.actividades)
+            ActivitiesList(activities: snapshot.data.actividades, category: snapshot.data.category.name)
           ],
         ),
         //bottomNavigationBar: ,
@@ -120,7 +119,7 @@ return Scaffold(
     
     
     }
-    ))));
+    )));
   }
 
   Widget _buildCategoryDetail(BuildContext context,  AsyncSnapshot<CategoryGeneral> snapshot) {

@@ -1,4 +1,5 @@
 import 'package:a05/assets/colors.dart';
+import 'package:a05/category/Category.dart';
 import 'package:flutter/material.dart';
 import 'ListActivity.dart';
 import '../main.dart';
@@ -10,9 +11,11 @@ const mainColor = Colors.orange;
 /// inicializar el widget
 class ActivitiesList extends StatefulWidget {
   final List<ListActivity> activities;
+  final String category;
 
   ActivitiesList({
     @required this.activities,
+    @required this.category
   });
 
   @override
@@ -88,9 +91,6 @@ class _ActivitiesListState extends State<ActivitiesList> {
       color: Colors.black54, blurRadius: 4.0, offset: Offset(1.75, 1.75));
 
   Widget _buildTile(ListActivity activity) {
-    print(activity.activityName);
-    print(activity.activityCategory);
-    print(activity.duration);
     
     return Container(
       decoration: BoxDecoration(
@@ -120,7 +120,7 @@ class _ActivitiesListState extends State<ActivitiesList> {
             children: <Widget>[
               Text(activity.activityName),
               Text(
-                activity.activityCategory,
+                widget.category,
                 style: TextStyle(color: Colors.grey),
               )
             ],

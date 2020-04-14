@@ -23,7 +23,7 @@ class ListActivity {
       
   factory ListActivity.fromJson(Map<String, dynamic> json) {
     return ListActivity(
-      activityCategory: "Lenguaje",
+      activityCategory: "",
           activityName: json["nombre"],
           thumbnail: json["descripcion"],
           duration: json["duracion"],
