@@ -4,7 +4,7 @@ import 'package:a05/main.dart';
 import 'package:flutter/material.dart';
 import '../assets/colors.dart';
 import '../Profile/ProfileView.dart';
-
+import "../Home/Home.dart";
 const mainColor = Colors.orange;
 
 class ActividadDetalleView extends StatefulWidget {
@@ -22,7 +22,7 @@ class ActividadDetalleViewState extends State<ActividadDetalleView> {
     });
     if (_selectedIndex == 0) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHomePage()));
+          context, MaterialPageRoute(builder: (context) => Home()));
     } else if (_selectedIndex == 3) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ProfileView()));

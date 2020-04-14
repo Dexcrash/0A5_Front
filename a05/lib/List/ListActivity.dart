@@ -6,18 +6,30 @@ class ListActivity {
   final String thumbnail;
   final String activityName;
   final String activityCategory;
-  final String duration;
+  final int duration;
+  final String id;
+  final String foto_url;
+  final String video_url;
   ListActivity(
       {@required this.thumbnail,
       @required this.activityName,
       @required this.activityCategory,
-      @required this.duration});
-      factory ListActivity.fromJson(Map<String, dynamic> json) {
+      @required this.duration,
+      @required this.id,
+      @required this.foto_url,
+      @required this.video_url});
+      
+      
+      
+  factory ListActivity.fromJson(Map<String, dynamic> json) {
     return ListActivity(
       activityCategory: json["Lenguaje"],
           activityName: json["nombre"],
           thumbnail: json["descripcion"],
-          duration: json["duracion"]
+          duration: json["duracion"],
+          id: json["_id"],
+          foto_url: json["foto_url"],
+          video_url: json["video_url"]
     );
   }
 

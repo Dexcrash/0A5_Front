@@ -5,6 +5,7 @@ import 'MyChart.dart';
 import 'MySeries.dart';
 import 'DropDownMenu.dart';
 import '../assets/colors.dart';
+import "../Home/Home.dart";
 
 const mainColor = Colors.orange;
 
@@ -17,7 +18,7 @@ class ProfileViewState extends State<ProfileView> {
     });
     if (_selectedIndex == 0) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHomePage()));
+          context, MaterialPageRoute(builder: (context) => Home()));
     }
   }
 

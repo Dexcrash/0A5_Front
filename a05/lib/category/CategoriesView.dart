@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' show json;
 
 
-Future<CategoryC> fetchCategory() async {
+Future<CategoryC> fetchCategory(String id) async {
   final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/1');
 
   if (response.statusCode == 200) {
@@ -22,7 +22,7 @@ Future<CategoryC> fetchCategory() async {
     throw Exception('Failed to load category');
   }
 }
-Future<List<ListActivity>> fetchActivities() async {
+Future<List<ListActivity>> fetchActivities(String id) async {
   final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/1/ejercicios');
 
   if (response.statusCode == 200) {
@@ -42,33 +42,24 @@ List<ListActivity> parseProducts(String responseBody) {
 
 
 class CategoriesViewState extends State<CategoriesView> {
-  Future<CategoryC> futureCategory;
-  CategoryC test;
-  Future<List<ListActivity>> futureA;
-  List<ListActivity> testA;
+Future<CategoryC> fcategory;
+Future<List<ListActivity>> factividades;
+
   @override
   void initState(){
     super.initState();
-    futureCategory=widget.category;
-    futureA= widget.actividades;
-
-    futureCategory.then((result) {
-       test= result;
-
-       futureA.then((result2) {
-
-testA=result2;
-       });
-      setState(() {
-        
-      });
-   
+    setState(() {
+      fcategory= fetchCategory(widget.id);
+    factividades= fetchActivities(widget.id);
+    
     });
-
+    
   }
   @override
   Widget build(BuildContext context) {
-    return _buildTabBar(context);
+   return _buildTabBar(context);
+ 
+    
   }
 
 
@@ -76,11 +67,18 @@ testA=result2;
   Widget _buildTabBar(BuildContext context) {
     return (DefaultTabController(
       length: 2,
-      child: Scaffold(
+      child: new Container(
+        child: new FutureBuilder(
+  future: Future.wait([fcategory, factividades]).then(
+    (response) => new CategoryGeneral(category: response[0], actividades: response[1]),
+  ),
+  builder: (context, snapshot) {
+    if (snapshot.hasData) {
+            return Scaffold(
         backgroundColor: $base,
         appBar: AppBar(
           backgroundColor: Colors.orange,
-          title: Text(test.name),
+          title: Text(snapshot.data.category.name),
           bottom: TabBar(tabs: [
             Tab(text: 'Detalles'),
             Tab(text: 'Actividades'),
@@ -89,17 +87,40 @@ testA=result2;
         body: TabBarView(
           children: [
             //Detalles
-            _buildCategoryDetail(context),
+            _buildCategoryDetail(context, snapshot),
             //Lista
-            ActivitiesList(activities:testA)
+            ActivitiesList(activities:snapshot.data.actividades)
           ],
         ),
         //bottomNavigationBar: ,
-      ),
-    ));
+      );
+            
+       }
+            else{
+return Scaffold(
+        backgroundColor: $base,
+        appBar: AppBar(
+          backgroundColor: Colors.orange,
+          
+        ),
+        body: Center(
+          child: new CircularProgressIndicator())
+        //bottomNavigationBar: ,
+      );
+
+
+
+
+
+
+            }
+    
+    
+    }
+    ))));
   }
 
-  Widget _buildCategoryDetail(BuildContext context) {
+  Widget _buildCategoryDetail(BuildContext context,  AsyncSnapshot<CategoryGeneral> snapshot) {
     double cWidth = MediaQuery.of(context).size.width * 0.8;
     return SingleChildScrollView(
       child: Column(
@@ -110,7 +131,7 @@ testA=result2;
             constraints: new BoxConstraints.expand(height: 200.0),
             decoration: new BoxDecoration(
               image: new DecorationImage(
-                image: new AssetImage(test.picturePath),
+                image: new AssetImage(snapshot.data.category.picturePath),
                 fit: BoxFit.cover,
               ),
             ),
@@ -128,7 +149,7 @@ testA=result2;
               elevation: 10.0,
               child: Container(
                 padding: EdgeInsets.all(10),
-                child: Text(test.name,
+                child: Text(snapshot.data.category.name,
                     style: TextStyle(
                       color: $base,
                       fontSize: 40.0,
@@ -141,7 +162,7 @@ testA=result2;
             padding: const EdgeInsets.all(16.0),
             width: cWidth*1.2,
             child: Text(
-             test.description,
+             snapshot.data.category.description,
               style: TextStyle(
                 color: Colors.grey[700],
               ),
@@ -158,17 +179,19 @@ class CategoriesView extends StatefulWidget {
   @override
   CategoriesViewState createState() => CategoriesViewState();
 
-  final Future<CategoryC> category;
-final Future<List<ListActivity>> actividades;
+  final String id;
 
-  CategoriesView({@required this.category,@required this.actividades });
+  CategoriesView({ @required this.id });
 
-  static Future<CategoryC> getTestCategory() {
-    return fetchCategory();
-  }
-  static Future<List<ListActivity>> getActivities() {
-    return fetchActivities();
-  }
+  
+}
+class CategoryGeneral {
+  
+  CategoryC category;
+  List<ListActivity> actividades;
+
+CategoryGeneral({this.category, this.actividades});
+  
 }
 
 class CategoryC {
@@ -196,7 +219,7 @@ factory CategoryC.vacio(){
   factory CategoryC.fromJson(Map<String, dynamic> json) {
     return CategoryC(
       description: json['descripcion'],
-      id: json['id'],
+      id: json['_id'],
       picturePath: json['foto_url'],
       motivacion: json['motivacion'],
       name: json['nombre'],

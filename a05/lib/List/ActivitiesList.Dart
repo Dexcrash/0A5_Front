@@ -25,27 +25,43 @@ class ActivitiesList extends StatefulWidget {
           activityCategory: "Lenguaje",
           activityName: "Contar Numeritos",
           thumbnail: "img/imageAct_1.jpg",
-          duration: "5 min"),
+          duration: 5,
+          foto_url: "img/imageAct_1.jpg",
+          video_url: "img/imageAct_1.jpg",
+          id: "1"),
+           
       ListActivity(
           activityCategory: "Lenguaje",
           activityName: "Contar Dedos",
           thumbnail: "img/imageAct_1.jpg",
-          duration: "6 min"),
+          duration: 6,
+          foto_url: "img/imageAct_1.jpg",
+          video_url: "img/imageAct_1.jpg",
+          id: "2"),
       ListActivity(
           activityCategory: "Lenguaje",
           activityName: "Contar Cubos",
           thumbnail: "img/imageAct_1.jpg",
-          duration: "8 min"),
+          duration: 8,
+          foto_url: "img/imageAct_1.jpg",
+          video_url: "img/imageAct_1.jpg",
+          id: "3"),
       ListActivity(
           activityCategory: "Lenguaje",
           activityName: "Rebote Rebote",
           thumbnail: "img/imageAct_1.jpg",
-          duration: "2 min"),
+          duration: 2,
+          foto_url: "img/imageAct_1.jpg",
+          video_url: "img/imageAct_1.jpg",
+          id: "4"),
       ListActivity(
           activityCategory: "Lenguaje",
           activityName: "Ruso",
           thumbnail: "img/imageAct_1.jpg",
-          duration: "Para Siempre"),
+          duration: 2,
+          foto_url: "img/imageAct_1.jpg",
+          video_url: "img/imageAct_1.jpg",
+          id: "5"),
     ];
   }
 }
@@ -127,7 +143,7 @@ class _ActivitiesListState extends State<ActivitiesList> {
                             builder: (context) => ActivityView()));
                   },
                 ),
-                Text(activity.duration)
+                Text("$activity.duration min")
               ],
             ),
           )
