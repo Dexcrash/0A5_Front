@@ -1,11 +1,32 @@
 import 'package:a05/List/ListActivity.dart';
+import 'package:a05/category/Category.dart';
 import 'package:flutter/material.dart';
 import 'package:a05/assets/colors.dart';
 import 'package:provider/provider.dart';
 import '../Profile/ProfileView.dart';
 import '../Activity/ActivityView.dart';
 import '../category/CategoriesView.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' show json;
 
+Future<List<CategoryC>> fetchCategories() async {
+  final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias');
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return parseCategories((response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load category');
+  }
+}
+List<CategoryC> parseCategories(String responseBody) { 
+   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>(); 
+  var u= parsed.map<CategoryC>((json) =>CategoryC.fromJson(json)).toList(); 
+   return u;
+} 
 class Home extends StatefulWidget {
   //Home({Key key, this.title}) : super(key: key);
 
@@ -23,6 +44,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+Future<List<CategoryC>> fcategories ;
+
+@override
+  void initState(){
+    super.initState();
+    setState(() {
+      fcategories = fetchCategories();
+   
+    });
+    
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -62,7 +94,18 @@ class _HomeState extends State<Home> {
               );
             },
           )),
-      body: new Column(
+      body:  new FutureBuilder(
+  future: Future.wait( [fcategories]).then(
+    (response){
+      List<CategoryC> cate=response[0];
+      return cate;
+    } 
+  ),
+  builder: (context, snapshot) {
+    print(snapshot.data);
+    if (snapshot.hasData) {
+      
+      return new Column(
         children: <Widget>[
           SizedBox(height: 20),
           Container(
@@ -82,137 +125,7 @@ class _HomeState extends State<Home> {
           new SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: <Widget>[
-                SizedBox(
-                  height: 120,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          //Carga la view de la categoria
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CategoriesView(
-                                  id: "1",
-                                  
-                                  )
-                                  
-                                  
-                                  ));
-                    },
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      color: $base,
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset('img/img8.png',
-                              height: 80, fit: BoxFit.fill),
-                          Text("Habilidades de autoregulación",
-                              style: TextStyle(color: $colorTitle)),
-                          Text("3 a 5 años",
-                              style: TextStyle(color: $colorSubtitle)),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    color: $base,
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset('img/img1.png',
-                            height: 80, fit: BoxFit.fill),
-                        Text("Habilidades ejecutivas",
-                            style: TextStyle(color: $colorTitle)),
-                        Text("18 a 36 meses",
-                            style: TextStyle(color: $colorSubtitle)),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    color: $base,
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset('img/img2.png',
-                            height: 80, fit: BoxFit.fill),
-                        Text("Habilidades Linguisticas",
-                            style: TextStyle(color: $colorTitle)),
-                        Text("6 a 18 meses",
-                            style: TextStyle(color: $colorSubtitle)),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    color: $base,
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset('img/img8.png',
-                            height: 80, fit: BoxFit.fill),
-                        Text("Habilidades de autoregulación",
-                            style: TextStyle(color: $colorTitle)),
-                        Text("3 a 5 años",
-                            style: TextStyle(color: $colorSubtitle)),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    color: $base,
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset('img/img1.png',
-                            height: 80, fit: BoxFit.fill),
-                        Text("Habilidades ejecutivas",
-                            style: TextStyle(color: $colorTitle)),
-                        Text("18 a 36 meses",
-                            style: TextStyle(color: $colorSubtitle)),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 120,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    color: $base,
-                    child: Column(
-                      children: <Widget>[
-                        Image.asset('img/img2.png',
-                            height: 80, fit: BoxFit.fill),
-                        Text("Habilidades Linguisticas",
-                            style: TextStyle(color: $colorTitle)),
-                        Text("6 a 18 meses",
-                            style: TextStyle(color: $colorSubtitle)),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+              children:  _buildList(context, snapshot.data)
             ),
           ),
           SizedBox(height: 20),
@@ -264,7 +177,15 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-        ],
+        ]
+        );
+    }
+    else{
+return new Center( child: CircularProgressIndicator());
+        //bottomNavigationBar: ,
+     
+    
+    }}
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex:
@@ -290,6 +211,60 @@ class _HomeState extends State<Home> {
         ],
         onTap: _onItemTapped,
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+  );
+
 }
+List<Widget> _buildList(BuildContext context, List<CategoryC> categories ) {
+    
+    List<Widget> elements=[];
+    for (var i=0; i< categories.length; i++)
+    {
+elements.add(_buildElement(categories[i]));
+    }
+    
+        return elements;
+  }
+
+
+ Widget _buildElement(CategoryC category) {
+
+return SizedBox(
+                  height: 120,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          //Carga la view de la categoria
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CategoriesView(
+                                  id: "1",
+                                  
+                                  )
+                                  
+                                  
+                                  ));
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      color: $base,
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset(category.picturePath,
+                              height: 80, fit: BoxFit.fill),
+                          Text(category.name,
+                              style: TextStyle(color: $colorTitle)),
+                          Text(category.name,
+                              style: TextStyle(color: $colorSubtitle)),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+
+ }
+
+}
+
+

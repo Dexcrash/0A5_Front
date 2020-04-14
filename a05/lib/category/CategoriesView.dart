@@ -22,6 +22,7 @@ Future<CategoryC> fetchCategory(String id) async {
     throw Exception('Failed to load category');
   }
 }
+
 Future<List<ListActivity>> fetchActivities(String id) async {
   final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/1/ejercicios');
 

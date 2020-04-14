@@ -114,17 +114,21 @@ class _ActivitiesListState extends State<ActivitiesList> {
             ],
           ),
           //Text
-          Column(
+           Expanded(
+                child:
+                Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(activity.activityName),
+              Text(activity.activityName) ,
               Text(
                 widget.category,
                 style: TextStyle(color: Colors.grey),
-              )
+              
+    ),
+             
             ],
-          ),
+          )),
           //Time
           Container(
             // padding: EdgeInsets.only(10),
