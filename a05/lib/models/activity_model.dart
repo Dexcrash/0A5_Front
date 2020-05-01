@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 /// Clase que rerpresenta una actividad para la lista de actividades
 
-class ListActivity {
+class Ejercicio {
   final String thumbnail;
   final String activityName;
   final String activityCategory;
@@ -10,7 +10,7 @@ class ListActivity {
   final String id;
   final String foto_url;
   final String video_url;
-  ListActivity(
+  Ejercicio(
       {@required this.thumbnail,
       @required this.activityName,
       @required this.activityCategory,
@@ -19,8 +19,8 @@ class ListActivity {
       @required this.foto_url,
       @required this.video_url});
 
-  factory ListActivity.fromJson(Map<String, dynamic> json) {
-    return ListActivity(
+  factory Ejercicio.fromJson(Map<String, dynamic> json) {
+    return Ejercicio(
         activityCategory: "",
         activityName: json["nombre"],
         thumbnail: json["descripcion"],

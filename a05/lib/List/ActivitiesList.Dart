@@ -1,7 +1,6 @@
 import 'package:a05/assets/colors.dart';
-import 'package:a05/category/Category.dart';
+import 'package:a05/models/activity_model.dart';
 import 'package:flutter/material.dart';
-import 'ListActivity.dart';
 import '../main.dart';
 import 'package:a05/Activity/ActivityView.dart';
 
@@ -10,7 +9,7 @@ const mainColor = Colors.orange;
 /// Carga una list view con las actividades que le pasan por parametro al
 /// inicializar el widget
 class ActivitiesList extends StatefulWidget {
-  final List<ListActivity> activities;
+  final List<Ejercicio> activities;
   final String category;
 
   ActivitiesList({
@@ -22,9 +21,9 @@ class ActivitiesList extends StatefulWidget {
   _ActivitiesListState createState() => _ActivitiesListState();
 
 
-  static List<ListActivity> generateTestActivities() {
+  static List<Ejercicio> generateTestActivities() {
     return [
-      ListActivity(
+      Ejercicio(
           activityCategory: "Lenguaje",
           activityName: "Contar Numeritos",
           thumbnail: "img/imageAct_1.jpg",
@@ -33,7 +32,7 @@ class ActivitiesList extends StatefulWidget {
           video_url: "img/imageAct_1.jpg",
           id: "1"),
            
-      ListActivity(
+      Ejercicio(
           activityCategory: "Lenguaje",
           activityName: "Contar Dedos",
           thumbnail: "img/imageAct_1.jpg",
@@ -41,7 +40,7 @@ class ActivitiesList extends StatefulWidget {
           foto_url: "img/imageAct_1.jpg",
           video_url: "img/imageAct_1.jpg",
           id: "2"),
-      ListActivity(
+      Ejercicio(
           activityCategory: "Lenguaje",
           activityName: "Contar Cubos",
           thumbnail: "img/imageAct_1.jpg",
@@ -49,7 +48,7 @@ class ActivitiesList extends StatefulWidget {
           foto_url: "img/imageAct_1.jpg",
           video_url: "img/imageAct_1.jpg",
           id: "3"),
-      ListActivity(
+      Ejercicio(
           activityCategory: "Lenguaje",
           activityName: "Rebote Rebote",
           thumbnail: "img/imageAct_1.jpg",
@@ -57,7 +56,7 @@ class ActivitiesList extends StatefulWidget {
           foto_url: "img/imageAct_1.jpg",
           video_url: "img/imageAct_1.jpg",
           id: "4"),
-      ListActivity(
+      Ejercicio(
           activityCategory: "Lenguaje",
           activityName: "Ruso",
           thumbnail: "img/imageAct_1.jpg",
@@ -90,7 +89,7 @@ class _ActivitiesListState extends State<ActivitiesList> {
   BoxShadow _boxShadow2 = BoxShadow(
       color: Colors.black54, blurRadius: 4.0, offset: Offset(1.75, 1.75));
 
-  Widget _buildTile(ListActivity activity) {
+  Widget _buildTile(Ejercicio activity) {
     
     return Container(
       decoration: BoxDecoration(

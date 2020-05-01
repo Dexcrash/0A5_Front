@@ -1,32 +1,12 @@
-import 'package:a05/List/ListActivity.dart';
-import 'package:a05/category/Category.dart';
+import 'package:a05/category/CategoriesView.dart';
+import 'package:a05/services/repository.dart';
+import 'package:a05/ui_resources/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:a05/assets/colors.dart';
-import 'package:provider/provider.dart';
 import '../Profile/ProfileView.dart';
 import '../Activity/ActivityView.dart';
-import '../category/CategoriesView.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' show json;
+import '../models/category_model.dart';
 
-Future<List<CategoryC>> fetchCategories() async {
-  final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias');
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return parseCategories((response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load category');
-  }
-}
-List<CategoryC> parseCategories(String responseBody) { 
-   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>(); 
-  var u= parsed.map<CategoryC>((json) =>CategoryC.fromJson(json)).toList(); 
-   return u;
-} 
 class Home extends StatefulWidget {
   //Home({Key key, this.title}) : super(key: key);
 
@@ -44,16 +24,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-Future<List<CategoryC>> fcategories ;
+  Future<List<Category>> fcategories;
 
-@override
-  void initState(){
+  @override
+  void initState() {
+    fcategories = repo.getAllCategories();
     super.initState();
-    setState(() {
-      fcategories = fetchCategories();
-   
-    });
-    
   }
 
   void _onItemTapped(int index) {
@@ -69,6 +45,8 @@ Future<List<CategoryC>> fcategories ;
           context, MaterialPageRoute(builder: (context) => ActivityView()));
     }
   }
+
+  Repository repo = Repository();
 
   @override
   Widget build(BuildContext context) {
@@ -90,181 +68,134 @@ Future<List<CategoryC>> fcategories ;
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon: const Icon(Icons.menu, color: $base), onPressed: () {},
+                icon: const Icon(Icons.menu, color: $base),
+                onPressed: () {},
               );
             },
           )),
-      body:  new FutureBuilder(
-  future: Future.wait( [fcategories]).then(
-    (response){
-      List<CategoryC> cate=response[0];
-      return cate;
-    } 
-  ),
-  builder: (context, snapshot) {
-    print(snapshot.data);
-    if (snapshot.hasData) {
-      
-      return new Column(
-        children: <Widget>[
-          SizedBox(height: 20),
-          Container(
-              alignment: Alignment.centerLeft,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(width: 20),
-                  new Text('Reciente',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: $colorTitle,
-                        fontSize: 30.0,
-                      )),
-                ],
-              )),
-          SizedBox(height: 20),
-          new SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children:  _buildList(context, snapshot.data)
-            ),
-          ),
-          SizedBox(height: 20),
-          Container(
-              alignment: Alignment.centerLeft,
-              child: Row(
-                children: <Widget>[
-                  SizedBox(width: 20),
-                  new Text('Hoy',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: $colorTitle,
-                        fontSize: 30.0,
-                      )),
-                ],
-              )),
-          SizedBox(height: 20),
-          new Container(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    height: 200,
-                    child: Card(
+      body: new FutureBuilder(
+          future: fcategories,
+          builder: (context, snapshot) {
+            print(snapshot.data);
+            if (snapshot.hasData) {
+              return new Column(children: <Widget>[
+                SizedBox(height: 20),
+                Container(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(width: 20),
+                        new Text('Reciente',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: $colorTitle,
+                              fontSize: 30.0,
+                            )),
+                      ],
+                    )),
+                SizedBox(height: 20),
+                new SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(children: _buildList(context, snapshot.data)),
+                ),
+                SizedBox(height: 20),
+                Container(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(width: 20),
+                        new Text('Hoy',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: $colorTitle,
+                              fontSize: 30.0,
+                            )),
+                      ],
+                    )),
+                SizedBox(height: 20),
+                new Container(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
                         child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("img/img3.png"),
-                          fit: BoxFit.fitWidth,
-                          alignment: Alignment.topCenter,
+                          height: 200,
+                          child: Card(
+                              child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage("img/img3.png"),
+                                fit: BoxFit.fitWidth,
+                                alignment: Alignment.topCenter,
+                              ),
+                            ),
+                            child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  Text("Lenguaje",
+                                      style: TextStyle(
+                                        color: $base,
+                                        fontSize: 25.0,
+                                      )),
+                                  Text("18 a 36 meses",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(color: $base)),
+                                ]),
+                          )),
                         ),
                       ),
-                      child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            Text("Lenguaje",
-                                style: TextStyle(
-                                  color: $base,
-                                  fontSize: 25.0,
-                                )),
-                            Text("18 a 36 meses",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(color: $base)),
-                          ]),
-                    )),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ]
-        );
-    }
-    else{
-return new Center( child: CircularProgressIndicator());
-        //bottomNavigationBar: ,
-     
-    
-    }}
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex:
-            _selectedIndex, // this will be set when a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.home, color: $scaffoldBackground),
-            title:
-                new Text('Home', style: TextStyle(color: $scaffoldBackground)),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.show_chart, color: $colorSubtitle),
-            title: new Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: $colorSubtitle),
-            title: new Text('Activity'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: $colorSubtitle),
-            title: new Text('Perfil'),
-          ),
-        ],
-        onTap: _onItemTapped,
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-  );
+              ]);
+            } else {
+              return new Center(child: CircularProgressIndicator());
+              //bottomNavigationBar: ,
 
-}
-List<Widget> _buildList(BuildContext context, List<CategoryC> categories ) {
-    
-    List<Widget> elements=[];
-    for (var i=0; i< categories.length; i++)
-    {
-elements.add(_buildElement(categories[i]));
-    }
-    
-        return elements;
+            }
+          }),
+      bottomNavigationBar: NavBar(index: 0),
+    );
   }
 
+  List<Widget> _buildList(BuildContext context, List<Category> categories) {
+    List<Widget> elements = [];
+    for (var i = 0; i < categories.length; i++) {
+      elements.add(_buildElement(categories[i]));
+    }
 
- Widget _buildElement(CategoryC category) {
-print(category.id);
-return SizedBox(
-                  height: 120,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          //Carga la view de la categoria
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CategoriesView(
-                                  id: category.id,
-                                  
-                                  )
-                                  
-                                  
-                                  ));
-                    },
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      color: $base,
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset(category.picturePath,
-                              height: 80, fit: BoxFit.fill),
-                          Text(category.name,
-                              style: TextStyle(color: $colorTitle)),
-                          Text(category.name,
-                              style: TextStyle(color: $colorSubtitle)),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
+    return elements;
+  }
 
- }
-
+  Widget _buildElement(Category category) {
+    print(category.id);
+    return SizedBox(
+      height: 120,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              //Carga la view de la categoria
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CategoriesView(
+                        id: category.id,
+                      )));
+        },
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          color: $base,
+          child: Column(
+            children: <Widget>[
+              Image.asset(category.picturePath, height: 80, fit: BoxFit.fill),
+              Text(category.name, style: TextStyle(color: $colorTitle)),
+              Text(category.name, style: TextStyle(color: $colorSubtitle)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
-
-

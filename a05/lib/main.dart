@@ -1,3 +1,4 @@
+import 'package:a05/Profile/ProfileView.dart';
 import 'package:flutter/material.dart';
 import 'package:a05/assets/colors.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
           '/': (BuildContext context) => Home(),
           '/home': (BuildContext context) => Home(),
           '/activity': (BuildContext context) => ActivityView(),
+          '/profile' : (BuildContext context) => ProfileView(),
         },
       ),
     );

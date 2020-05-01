@@ -1,64 +1,20 @@
-import 'package:a05/main.dart';
+import 'package:a05/models/activity_model.dart';
+import 'package:a05/models/category_model.dart';
 import 'package:a05/services/repository.dart';
 import 'package:flutter/material.dart';
 import '../assets/colors.dart';
-import 'Category.dart';
 import 'package:a05/List/ActivitiesList.Dart';
-import 'package:a05/List/ListActivity.dart';
-
-import 'package:http/http.dart' as http;
-import 'dart:convert' show json;
-
-Future<CategoryC> fetchCategory(int id) async {
-  print('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/' +
-      id.toString());
-  final response = await http.get(
-      'http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/' +
-          id.toString());
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return CategoryC.fromJson(json.decode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load category');
-  }
-}
-
-Future<List<ListActivity>> fetchActivities(int id) async {
-  final response = await http.get(
-      'http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/1/ejercicios');
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return parseActivities((response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load category');
-  }
-}
-
-List<ListActivity> parseActivities(String responseBody) {
-  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-  var u =
-      parsed.map<ListActivity>((json) => ListActivity.fromJson(json)).toList();
-  return u;
-}
 
 class CategoriesViewState extends State<CategoriesView> {
-  Future<CategoryC> fcategory;
-  Future<List<ListActivity>> factividades;
-
+  Future<Category> fcategory;
+  Future<List<Ejercicio>> factividades;
+  final repo = Repository();
   @override
   void initState() {
     super.initState();
     setState(() {
-      fcategory = fetchCategory(widget.id);
-      factividades = fetchActivities(widget.id);
+      fcategory = repo.getCategoryId(widget.id);
+      factividades = repo.getActivitiesByCat(widget.id);
     });
   }
 
@@ -177,45 +133,8 @@ class CategoriesView extends StatefulWidget {
 }
 
 class CategoryGeneral {
-  CategoryC category;
-  List<ListActivity> actividades;
+  Category category;
+  List<Ejercicio> actividades;
 
   CategoryGeneral({this.category, this.actividades});
-}
-
-class CategoryC {
-  final String description;
-  final int id;
-  final String picturePath;
-  final String video_url;
-  final String name;
-  final String motivacion;
-
-  CategoryC(
-      {this.description,
-      this.id,
-      this.picturePath,
-      this.motivacion,
-      this.name,
-      this.video_url});
-
-  factory CategoryC.vacio() {
-    return CategoryC(
-        description: "",
-        id: 1,
-        picturePath: "",
-        motivacion: "",
-        name: "",
-        video_url: "");
-  }
-
-  factory CategoryC.fromJson(Map<String, dynamic> json) {
-    return CategoryC(
-        description: json['descripcion'],
-        id: json['id'],
-        picturePath: json['foto_url'],
-        motivacion: json['motivacion'],
-        name: json['nombre'],
-        video_url: json['video_url']);
-  }
 }

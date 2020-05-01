@@ -1,4 +1,5 @@
 import 'package:a05/main.dart';
+import 'package:a05/ui_resources/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'MyChart.dart';
@@ -17,8 +18,7 @@ class ProfileViewState extends State<ProfileView> {
       _selectedIndex = index;
     });
     if (_selectedIndex == 0) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Home()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     }
   }
 
@@ -30,31 +30,7 @@ class ProfileViewState extends State<ProfileView> {
         backgroundColor: mainColor,
       ),
       body: _buildBody(context),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex:
-            _selectedIndex, // this will be set when a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.home, color: $colorSubtitle),
-            title:
-                new Text('Home', style: TextStyle(color: $scaffoldBackground)),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.show_chart, color: $colorSubtitle),
-            title: new Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: $colorSubtitle),
-            title: new Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: $scaffoldBackground),
-            title: new Text('Perfil',
-                style: TextStyle(color: $scaffoldBackground)),
-          ),
-        ],
-        onTap: _onItemTapped,
-      ),
+      bottomNavigationBar: NavBar(index: 3),
     );
   }
 
