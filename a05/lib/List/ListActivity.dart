@@ -18,19 +18,15 @@ class ListActivity {
       @required this.id,
       @required this.foto_url,
       @required this.video_url});
-      
-      
-      
+
   factory ListActivity.fromJson(Map<String, dynamic> json) {
     return ListActivity(
-      activityCategory: "",
-          activityName: json["nombre"],
-          thumbnail: json["descripcion"],
-          duration: json["duracion"],
-          id: json["_id"],
-          foto_url: json["foto_url"],
-          video_url: json["video_url"]
-    );
+        activityCategory: "",
+        activityName: json["nombre"],
+        thumbnail: json["descripcion"],
+        duration: json["duracion"],
+        id: json["_id"],
+        foto_url: json["foto_url"],
+        video_url: json["video_url"]);
   }
-
 }

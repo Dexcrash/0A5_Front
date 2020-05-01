@@ -1,4 +1,5 @@
 import 'package:a05/main.dart';
+import 'package:a05/services/repository.dart';
 import 'package:flutter/material.dart';
 import '../assets/colors.dart';
 import 'Category.dart';
@@ -8,10 +9,12 @@ import 'package:a05/List/ListActivity.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' show json;
 
-
 Future<CategoryC> fetchCategory(int id) async {
-  print('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/'+ id.toString());
-  final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/'+ id.toString());
+  print('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/' +
+      id.toString());
+  final response = await http.get(
+      'http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/' +
+          id.toString());
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -25,7 +28,8 @@ Future<CategoryC> fetchCategory(int id) async {
 }
 
 Future<List<ListActivity>> fetchActivities(int id) async {
-  final response = await http.get('http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/1/ejercicios');
+  final response = await http.get(
+      'http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/categorias/1/ejercicios');
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -37,94 +41,79 @@ Future<List<ListActivity>> fetchActivities(int id) async {
     throw Exception('Failed to load category');
   }
 }
-List<ListActivity> parseActivities(String responseBody) { 
-   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>(); 
-  var u= parsed.map<ListActivity>((json) =>ListActivity.fromJson(json)).toList(); 
-   return u;
-} 
 
+List<ListActivity> parseActivities(String responseBody) {
+  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+  var u =
+      parsed.map<ListActivity>((json) => ListActivity.fromJson(json)).toList();
+  return u;
+}
 
 class CategoriesViewState extends State<CategoriesView> {
-Future<CategoryC> fcategory;
-Future<List<ListActivity>> factividades;
+  Future<CategoryC> fcategory;
+  Future<List<ListActivity>> factividades;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     setState(() {
-      fcategory= fetchCategory(widget.id);
-    factividades= fetchActivities(widget.id);
-    
+      fcategory = fetchCategory(widget.id);
+      factividades = fetchActivities(widget.id);
     });
-    
   }
+
   @override
   Widget build(BuildContext context) {
-   return _buildTabBar(context);
- 
-    
+    return _buildTabBar(context);
   }
-
-
 
   Widget _buildTabBar(BuildContext context) {
     return (DefaultTabController(
-      length: 2,
-      child:  new FutureBuilder(
-  future: Future.wait([fcategory, factividades]).then(
-    (response){
-      return new CategoryGeneral(category: response[0], actividades: response[1]);
-    } 
-  ),
-  builder: (context, snapshot) {
-    if (snapshot.hasData) {
-            return Scaffold(
-        backgroundColor: $base,
-        appBar: AppBar(
-          backgroundColor: Colors.orange,
-          title: Text(snapshot.data.category.name),
-          bottom: TabBar(tabs: [
-            Tab(text: 'Detalles'),
-            Tab(text: 'Actividades'),
-          ]),
-        ),
-        body: TabBarView(
-          children: [
-            //Detalles
-            _buildCategoryDetail(context, snapshot),
-            //Lista
-            ActivitiesList(activities: snapshot.data.actividades, category: snapshot.data.category.name)
-          ],
-        ),
-        //bottomNavigationBar: ,
-      );
-            
-       }
-            else{
-return Scaffold(
-        backgroundColor: $base,
-        appBar: AppBar(
-          backgroundColor: Colors.orange,
-          
-        ),
-        body: Center(
-          child: new CircularProgressIndicator())
-        //bottomNavigationBar: ,
-      );
-
-
-
-
-
-
-            }
-    
-    
-    }
-    )));
+        length: 2,
+        child: new FutureBuilder(
+            future: Future.wait([fcategory, factividades]).then((response) {
+              return new CategoryGeneral(
+                  category: response[0], actividades: response[1]);
+            }),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Scaffold(
+                  backgroundColor: $base,
+                  appBar: AppBar(
+                    backgroundColor: Colors.orange,
+                    title: Text(snapshot.data.category.name),
+                    bottom: TabBar(tabs: [
+                      Tab(text: 'Detalles'),
+                      Tab(text: 'Actividades'),
+                    ]),
+                  ),
+                  body: TabBarView(
+                    children: [
+                      //Detalles
+                      _buildCategoryDetail(context, snapshot),
+                      //Lista
+                      ActivitiesList(
+                          activities: snapshot.data.actividades,
+                          category: snapshot.data.category.name)
+                    ],
+                  ),
+                  //bottomNavigationBar: ,
+                );
+              } else {
+                return Scaffold(
+                    backgroundColor: $base,
+                    appBar: AppBar(
+                      backgroundColor: Colors.orange,
+                    ),
+                    body: Center(child: new CircularProgressIndicator())
+                    //bottomNavigationBar: ,
+                    );
+              }
+            })));
   }
 
-  Widget _buildCategoryDetail(BuildContext context,  AsyncSnapshot<CategoryGeneral> snapshot) {
+  Widget _buildCategoryDetail(
+      BuildContext context, AsyncSnapshot<CategoryGeneral> snapshot) {
     double cWidth = MediaQuery.of(context).size.width * 0.8;
     return SingleChildScrollView(
       child: Column(
@@ -164,9 +153,9 @@ return Scaffold(
           //Descripcion
           Container(
             padding: const EdgeInsets.all(16.0),
-            width: cWidth*1.2,
+            width: cWidth * 1.2,
             child: Text(
-             snapshot.data.category.description,
+              snapshot.data.category.description,
               style: TextStyle(
                 color: Colors.grey[700],
               ),
@@ -179,23 +168,19 @@ return Scaffold(
 }
 
 class CategoriesView extends StatefulWidget {
-  
   @override
   CategoriesViewState createState() => CategoriesViewState();
 
   final int id;
 
-  CategoriesView({ @required this.id });
-
-  
+  CategoriesView({@required this.id});
 }
+
 class CategoryGeneral {
-  
   CategoryC category;
   List<ListActivity> actividades;
 
-CategoryGeneral({this.category, this.actividades});
-  
+  CategoryGeneral({this.category, this.actividades});
 }
 
 class CategoryC {
@@ -206,29 +191,31 @@ class CategoryC {
   final String name;
   final String motivacion;
 
-  CategoryC({this.description, this.id, this.picturePath, this.motivacion, this.name, this.video_url});
+  CategoryC(
+      {this.description,
+      this.id,
+      this.picturePath,
+      this.motivacion,
+      this.name,
+      this.video_url});
 
-
-factory CategoryC.vacio(){
- return CategoryC(
-      description: "",
-      id: 1,
-      picturePath: "",
-      motivacion: "",
-      name: "",
-      video_url: ""
-    );
-}
+  factory CategoryC.vacio() {
+    return CategoryC(
+        description: "",
+        id: 1,
+        picturePath: "",
+        motivacion: "",
+        name: "",
+        video_url: "");
+  }
 
   factory CategoryC.fromJson(Map<String, dynamic> json) {
     return CategoryC(
-      description: json['descripcion'],
-      id: json['id'],
-      picturePath: json['foto_url'],
-      motivacion: json['motivacion'],
-      name: json['nombre'],
-      video_url: json['video_url']
-    );
+        description: json['descripcion'],
+        id: json['id'],
+        picturePath: json['foto_url'],
+        motivacion: json['motivacion'],
+        name: json['nombre'],
+        video_url: json['video_url']);
   }
-  
 }
