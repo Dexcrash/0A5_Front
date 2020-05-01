@@ -8,7 +8,8 @@ import 'package:http/http.dart' as http;
 
 class ApiConnection {
 
-  String baseUrl = 'http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/';
+  // String baseUrl = 'http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/';
+  String baseUrl = 'http://192.168.0.3:5000/';
 
   Future<List<Category>> getAllCategories() async {
     print("Api Connection: GET " + baseUrl + 'categorias');
@@ -28,7 +29,7 @@ class ApiConnection {
 
   Future<Category> getCategoryId(int id) async {
     print("api_connection get category by id: $id");
-    var response = await http.get(baseUrl = "categories/$id");
+    var response = await http.get(baseUrl + "categorias/$id");
     if(response.statusCode != 200) {
       throw Exception("Failed to connect: " + response.statusCode.toString());
     } else {
@@ -40,7 +41,7 @@ class ApiConnection {
 
   Future<List<Ejercicio>> getActivitiesByCat(int id) async {
     print("api_connection get activities from category id: $id");
-    var response = await http.get(baseUrl = "categories/$id/ejercicios");
+    var response = await http.get(baseUrl + "categorias/$id/ejercicios");
 
     if(response.statusCode != 200) {
       throw Exception("Failed to connect: " + response.statusCode.toString());
@@ -56,7 +57,7 @@ class ApiConnection {
 
   Future<Ejercicio> getEjercicio(String id) async {
     print("api_connection get category by id: $id");
-    var response = await http.get(baseUrl = "categories/$id");
+    var response = await http.get(baseUrl + "ejercicios/$id");
     if(response.statusCode != 200) {
       throw Exception("Failed to connect: " + response.statusCode.toString());
     } else {

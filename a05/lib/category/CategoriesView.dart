@@ -2,6 +2,7 @@ import 'package:a05/models/activity_model.dart';
 import 'package:a05/models/category_model.dart';
 import 'package:a05/services/repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 import '../assets/colors.dart';
 import 'package:a05/List/ActivitiesList.Dart';
 
@@ -9,6 +10,11 @@ class CategoriesViewState extends State<CategoriesView> {
   Future<Category> fcategory;
   Future<List<Ejercicio>> factividades;
   final repo = Repository();
+  // _setVideo(Category cat) {
+  //   setState(() {
+  //     _controller.load(cat.video_url.split("=")[1]);
+  //   });
+  // }
   @override
   void initState() {
     super.initState();
@@ -22,6 +28,7 @@ class CategoriesViewState extends State<CategoriesView> {
   Widget build(BuildContext context) {
     return _buildTabBar(context);
   }
+
 
   Widget _buildTabBar(BuildContext context) {
     return (DefaultTabController(
@@ -84,10 +91,13 @@ class CategoriesViewState extends State<CategoriesView> {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Icon(
-              Icons.play_circle_outline,
-              size: 150,
-              color: Colors.grey[100],
+            child: IconButton(
+              onPressed: () => _playVid(snapshot.data.category.video_url),
+              icon: Icon(
+                Icons.play_circle_outline,
+                size: 150,
+                color: Colors.grey[100],
+              ),
             ),
           ),
           //Titulo
@@ -120,6 +130,15 @@ class CategoriesViewState extends State<CategoriesView> {
         ],
       ),
     );
+  }
+
+  _playVid(String vid) {
+    FlutterYoutube.playYoutubeVideoByUrl(
+        apiKey: "AIzaSyDXwUgcbZUE0dPPWldsa_myCONwqHvqnKk",
+        videoUrl: vid,
+        autoPlay: true, //default falase
+        fullScreen: true //default false
+        );
   }
 }
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:a05/assets/colors.dart';
 import 'package:provider/provider.dart';
 
+import 'UI/CategoryList.dart';
 import 'assets/colors.dart';
 import 'Activity/ActivityView.dart';
 import "Home/Home.dart";
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           '/home': (BuildContext context) => Home(),
           '/activity': (BuildContext context) => ActivityView(),
           '/profile' : (BuildContext context) => ProfileView(),
+          '/search' :(BuildContext context) => CategoryList(),
         },
       ),
     );

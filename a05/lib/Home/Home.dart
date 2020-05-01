@@ -23,27 +23,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
   Future<List<Category>> fcategories;
 
   @override
   void initState() {
     fcategories = repo.getAllCategories();
     super.initState();
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (_selectedIndex == 3) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => ProfileView()));
-    }
-    if (_selectedIndex == 2) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => ActivityView()));
-    }
   }
 
   Repository repo = Repository();

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class NavBar extends StatefulWidget {
   NavBar({
-    this.index,
+    @required this.index,
   });
 
   final int index;
@@ -27,7 +27,7 @@ class NavBarState extends State<NavBar> {
   _getRoutes() {
     routes.add('/home'); //0
     routes.add('/nel'); //1
-    routes.add('/activity'); //2
+    routes.add('/search'); //2
     routes.add('/profile'); //3
   }
 
@@ -62,11 +62,7 @@ class NavBarState extends State<NavBar> {
     setState(() {
       _selectedIndex = index;
     });
-    if (_selectedIndex == 3) {
-      Navigator.pushNamed(context, '/profile');
-    }
-    if (_selectedIndex == 2) {
-      Navigator.pushNamed(context, '/activity');
-    }
+    Navigator.pushNamedAndRemoveUntil(
+        context, routes[index], (Route<dynamic> route) => false);
   }
 }

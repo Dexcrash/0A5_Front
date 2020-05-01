@@ -12,60 +12,10 @@ class ActivitiesList extends StatefulWidget {
   final List<Ejercicio> activities;
   final String category;
 
-  ActivitiesList({
-    @required this.activities,
-    @required this.category
-  });
+  ActivitiesList({@required this.activities, @required this.category});
 
   @override
   _ActivitiesListState createState() => _ActivitiesListState();
-
-
-  static List<Ejercicio> generateTestActivities() {
-    return [
-      Ejercicio(
-          activityCategory: "Lenguaje",
-          activityName: "Contar Numeritos",
-          thumbnail: "img/imageAct_1.jpg",
-          duration: 5,
-          foto_url: "img/imageAct_1.jpg",
-          video_url: "img/imageAct_1.jpg",
-          id: "1"),
-           
-      Ejercicio(
-          activityCategory: "Lenguaje",
-          activityName: "Contar Dedos",
-          thumbnail: "img/imageAct_1.jpg",
-          duration: 6,
-          foto_url: "img/imageAct_1.jpg",
-          video_url: "img/imageAct_1.jpg",
-          id: "2"),
-      Ejercicio(
-          activityCategory: "Lenguaje",
-          activityName: "Contar Cubos",
-          thumbnail: "img/imageAct_1.jpg",
-          duration: 8,
-          foto_url: "img/imageAct_1.jpg",
-          video_url: "img/imageAct_1.jpg",
-          id: "3"),
-      Ejercicio(
-          activityCategory: "Lenguaje",
-          activityName: "Rebote Rebote",
-          thumbnail: "img/imageAct_1.jpg",
-          duration: 2,
-          foto_url: "img/imageAct_1.jpg",
-          video_url: "img/imageAct_1.jpg",
-          id: "4"),
-      Ejercicio(
-          activityCategory: "Lenguaje",
-          activityName: "Ruso",
-          thumbnail: "img/imageAct_1.jpg",
-          duration: 2,
-          foto_url: "img/imageAct_1.jpg",
-          video_url: "img/imageAct_1.jpg",
-          id: "5"),
-    ];
-  }
 }
 
 class _ActivitiesListState extends State<ActivitiesList> {
@@ -90,7 +40,6 @@ class _ActivitiesListState extends State<ActivitiesList> {
       color: Colors.black54, blurRadius: 4.0, offset: Offset(1.75, 1.75));
 
   Widget _buildTile(Ejercicio activity) {
-    
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
@@ -113,19 +62,16 @@ class _ActivitiesListState extends State<ActivitiesList> {
             ],
           ),
           //Text
-           Expanded(
-                child:
-                Column(
+          Expanded(
+              child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(activity.activityName) ,
+              Text(activity.activityName),
               Text(
                 widget.category,
                 style: TextStyle(color: Colors.grey),
-              
-    ),
-             
+              ),
             ],
           )),
           //Time
@@ -150,7 +96,7 @@ class _ActivitiesListState extends State<ActivitiesList> {
                             builder: (context) => ActivityView()));
                   },
                 ),
-                Text("$activity.duration min")
+                Text("${activity.duration} min")
               ],
             ),
           )

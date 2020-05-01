@@ -23,7 +23,7 @@ class Ejercicio {
     return Ejercicio(
         activityCategory: "",
         activityName: json["nombre"],
-        thumbnail: json["descripcion"],
+        thumbnail: json["foto_url"],
         duration: json["duracion"],
         id: json["_id"],
         foto_url: json["foto_url"],
