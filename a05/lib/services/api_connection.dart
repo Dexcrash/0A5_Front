@@ -7,8 +7,8 @@ import 'package:a05/models/kid_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiConnection {
-  // String baseUrl = 'http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/';
-  String baseUrl = 'http://192.168.0.3:5000/';
+  String baseUrl = 'http://ec2-18-212-16-222.compute-1.amazonaws.com:8080/';
+  // String baseUrl = 'http://192.168.0.3:5000/';
 
   Future<List<Category>> getAllCategories() async {
     print("Api Connection: GET " + baseUrl + 'categorias');
