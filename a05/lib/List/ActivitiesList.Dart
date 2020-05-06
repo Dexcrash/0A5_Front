@@ -52,17 +52,17 @@ class _ActivitiesListState extends State<ActivitiesList> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             //Imagen
-            Column(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.all(6.0),
-                  child: Image.asset(
-                    ejercicio.thumbnail,
-                    height: 80,
-                  ),
-                )
-              ],
-            ),
+            // Column(
+            //   children: <Widget>[
+            //     Container(
+            //       margin: EdgeInsets.all(6.0),
+            //       child: Image.asset(
+            //         ejercicio.thumbnail,
+            //         height: 80,
+            //       ),
+            //     )
+            //   ],
+            // ),
             //Text
             Expanded(
                 child: Column(
@@ -83,7 +83,7 @@ class _ActivitiesListState extends State<ActivitiesList> {
               width: 60,
               height: 80,
               alignment: Alignment(0.0, 0.0),
-              color: Colors.grey[200],
+              // color: Colors.grey[200],
               child: Column(
                 // crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.center,
