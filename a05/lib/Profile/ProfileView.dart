@@ -1,4 +1,6 @@
 import 'package:a05/main.dart';
+import 'package:a05/models/kid_model.dart';
+import 'package:a05/services/repository.dart';
 import 'package:a05/ui_resources/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -8,9 +10,16 @@ import 'DropDownMenu.dart';
 import '../assets/colors.dart';
 import "../Home/Home.dart";
 
-
 class ProfileViewState extends State<ProfileView> {
   int _selectedIndex = 3;
+  Repository repo = Repository.getInstance();
+  Future<List<Kid>> listaKids;
+
+  @override
+  void initState() {
+    listaKids = repo.getKids();
+    super.initState();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -27,6 +36,14 @@ class ProfileViewState extends State<ProfileView> {
       appBar: AppBar(
         title: Text('Perfil'),
         backgroundColor: $mainColor,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.add,
+            ),
+            onPressed: () => _addKid(),
+          )
+        ],
       ),
       body: _buildBody(context),
       bottomNavigationBar: NavBar(index: 3),
@@ -78,7 +95,22 @@ class ProfileViewState extends State<ProfileView> {
                 ),
               ],
             ),
-            Column(children: <Widget>[DropDownMenu()]),
+            FutureBuilder(
+              future: listaKids,
+              builder:
+                  (BuildContext context, AsyncSnapshot<List<Kid>> snapshot) {
+                if (snapshot.hasData) {
+                  print(snapshot.data.length);
+                  return Column(children: <Widget>[
+                    DropDownMenu(
+                      listKids: snapshot.data,
+                    )
+                  ]);
+                } else {
+                  return new Center(child: CircularProgressIndicator());
+                }
+              },
+            )
           ],
         ));
   }
@@ -143,12 +175,12 @@ class ProfileViewState extends State<ProfileView> {
               Container(
                 decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
-                    color: $mainColor,
-                    boxShadow: [boxShadow2],
+                    // color: $mainColor,
+                    // boxShadow: [boxShadow2],
                     borderRadius:
                         new BorderRadius.all(new Radius.circular(10.0))),
                 child: Text("Resumen Semanal",
-                    style: TextStyle(fontSize: 30.0, color: Colors.white)),
+                    style: TextStyle(fontSize: 30.0, color: $colorTitle)),
                 padding: EdgeInsets.all(15.0),
                 margin: EdgeInsets.all(5.0),
               ),
@@ -160,6 +192,10 @@ class ProfileViewState extends State<ProfileView> {
           //Agrega la primera grafica
           Container(child: MyBarChart(data: testList)),
         ]));
+  }
+
+  _addKid() {
+    Navigator.pushNamed(context, '/addKid');
   }
 }
 

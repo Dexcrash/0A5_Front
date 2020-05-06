@@ -129,6 +129,26 @@ def get_all_dem_kids():
         returnList.append(vars(c))
     return jsonify(returnList)
 
+#POST
+@app.route('/kids', methods=['POST'])
+def add_kid():
+    dao = KidDAO()
+    dao.addKid(request.json)
+    return "OK", 200
+
+# Route /kids/<id_user>
+# GET
+# Obtiene la lista de ninos
+@app.route('/kids/<id_user>', methods=['GET'])
+def get_all_dem_kids_from_user(id_user):
+    dao = KidDAO()
+    returnList = []
+    for c in dao.get_user_id(id_user):
+        returnList.append(vars(c))
+    
+    pprint(returnList)
+    return jsonify(returnList)
+
 # Route /kids/<id_kid>/ejercicios_cat/<date>
 # GET
 # Obtiene el numero de ejercicios por categoria que ha hecho desde la fecha date
@@ -268,6 +288,7 @@ def create_user():
     user.from_doc(doc)
     return vars(user)
 
+# POST
 # Route /users/login_user
 @app.route('/users/login_user', methods=['POST'])
 def login():
@@ -282,3 +303,5 @@ def login():
         return user
     else:
         return "No user found for those credentials", 403
+
+

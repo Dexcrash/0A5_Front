@@ -1,4 +1,5 @@
 import 'package:a05/Profile/ProfileView.dart';
+import 'package:a05/UI/addKidView.dart';
 import 'package:a05/UI/createAccount.dart';
 import 'package:a05/UI/login.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
           '/search' :(BuildContext context) => CategoryList(),
           '/login' : (BuildContext context) => Login(),
           '/createAccount' : (BuildContext context) => CreateAccount(),
+          '/addKid' : (BuildContext context) => AddKidView(),
           
         },
       ),

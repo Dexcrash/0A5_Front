@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:a05/models/activity_model.dart';
 import 'package:a05/models/category_model.dart';
+import 'package:a05/models/kid_model.dart';
 import 'package:a05/services/api_connection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -75,5 +76,14 @@ class Repository {
       r = false;
     }
     return r;
+  }
+
+  Future<List<Kid>> getKids() async {
+    return api.getKids(await getUserId());
+  }
+
+  Future<String> addKid(String nickname, String date, double peso) async {
+    String idUser = await getUserId();
+    return api.addKid(nickname, date, peso, idUser);
   }
 }

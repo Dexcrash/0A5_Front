@@ -1,18 +1,33 @@
 import 'package:a05/assets/colors.dart';
+import 'package:a05/models/kid_model.dart';
 import 'package:flutter/material.dart';
 
 class DropDownMenu extends StatefulWidget {
   //DropDownMenu({Key key}) : super(key: key);
+  final List<Kid> listKids;
 
+  const DropDownMenu({@required this.listKids});
   @override
   _DropDownMenuState createState() => _DropDownMenuState();
 }
 
 class _DropDownMenuState extends State<DropDownMenu> {
-  String dropdownValue = 'Juan';
+  String dropdownValue = '';
   String name = '';
   String edad = '';
   String peso = '';
+
+  List<String> names = [];
+
+  @override
+  void initState() {
+    names.add('');
+    for (int i = 0; i < widget.listKids.length; i++) {
+      print(widget.listKids[i].nickname);
+      names.add(widget.listKids[i].nickname);
+    }
+    super.initState();
+  }
 
   void getDropDownItem() {
     setState(() {
@@ -23,16 +38,13 @@ class _DropDownMenuState extends State<DropDownMenu> {
   @override
   Widget build(BuildContext context) {
     getDropDownItem();
-    if (name == 'Juan') {
-      setState(() {
-        edad = '20 Meses';
-        peso = '10 Kg';
-      });
-    } else if (name == 'Laura') {
-      setState(() {
-        edad = '10 Meses';
-        peso = '8 Kg';
-      });
+    for (int i = 0; i < widget.listKids.length; i++) {
+      if (name == widget.listKids[i].nickname) {
+        setState(() {
+          edad = '${widget.listKids[i].meses} meses';
+          peso = '${widget.listKids[i].pesoActual} kg';
+        });
+      }
     }
     return Container(
       //Info del nino
@@ -60,7 +72,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
                 Row(
                   children: <Widget>[
                     Text(
-                      'Escoje el perfil',
+                      'Perfil',
                       style: TextStyle(fontSize: 15),
                     )
                   ],
@@ -81,13 +93,12 @@ class _DropDownMenuState extends State<DropDownMenu> {
                         dropdownValue = newValue;
                       });
                     },
-                    items: <String>['Juan', 'Laura']
-                        .map<DropdownMenuItem<String>>((String value) {
+                    items: names.map(((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
                       );
-                    }).toList(),
+                    })).toList(),
                   )
                 ])
               ]))

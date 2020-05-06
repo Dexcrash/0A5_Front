@@ -4,7 +4,6 @@ from datetime import datetime
 from bson import ObjectId
 
 
-
 client = MongoClient(
     "mongodb+srv://admin:adminPass@cluster0-e8ksn.mongodb.net/test?retryWrites=true&w=majority")
 db = client.db0a5
@@ -112,6 +111,24 @@ class KidDAO:
             returnList.append(newObj)
         return returnList
 
+    def get_user_id(self, id):
+        print("Getting all dem kids from user: {}, yay".format(id))
+        docs = db.kids.find({"id_user": id})
+        returnList = []
+        for d in list(docs):
+            newObj = KidDAO()
+            newObj.create_from_doc(d)
+            returnList.append(newObj)
+        return returnList
+
+    def addKid(self, request):
+        db.kids.insert_one({
+            'nickname': request['nickname'],
+            'fecha_nacimiento': request['fecha_nacimiento'],
+            'peso_actual': request['peso_actual'],
+            'id_user': request['id_user']
+            })
+
 
 class Ejercicio_KidDAO:
     def create_from_doc(self, doc):
@@ -158,14 +175,12 @@ class Ejercicio_KidDAO:
         parsed_from_date = datetime.strptime(from_date, date_format)
         print(parsed_from_date)
         docs = db.ejercicio_kid.find({
-            'fecha': 
-                { "$gte":parsed_from_date }
-            })
+            'fecha':
+                {"$gte": parsed_from_date}
+        })
         returnList = []
         for d in list(docs):
             newObj = Ejercicio_KidDAO()
             newObj.create_from_doc(d)
             returnList.append(newObj)
         return returnList
-
-
