@@ -43,7 +43,7 @@ class CategoriesViewState extends State<CategoriesView> {
                 return Scaffold(
                   backgroundColor: $base,
                   appBar: AppBar(
-                    backgroundColor: Colors.orange,
+                    backgroundColor: $scaffoldBackground,
                     title: Text(snapshot.data.category.name),
                     bottom: TabBar(tabs: [
                       Tab(text: 'Detalles'),
@@ -66,7 +66,7 @@ class CategoriesViewState extends State<CategoriesView> {
                 return Scaffold(
                     backgroundColor: $base,
                     appBar: AppBar(
-                      backgroundColor: Colors.orange,
+                      backgroundColor: $scaffoldBackground,
                     ),
                     body: Center(child: new CircularProgressIndicator())
                     //bottomNavigationBar: ,
@@ -103,7 +103,7 @@ class CategoriesViewState extends State<CategoriesView> {
           //Titulo
           Container(
             child: Card(
-              color: Colors.orange,
+              color: $mainColor,
               margin: EdgeInsets.all(10),
               elevation: 10.0,
               child: Container(
@@ -124,6 +124,7 @@ class CategoriesViewState extends State<CategoriesView> {
               snapshot.data.category.description,
               style: TextStyle(
                 color: Colors.grey[700],
+                fontSize: 22,
               ),
             ),
           ),

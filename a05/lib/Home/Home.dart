@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
           // Here we take the value from the Home object that was created by
           // the App.build method, and use it to set our appbar title.
-          backgroundColor: Colors.orange,
+          backgroundColor: $scaffoldBackground,
           title: Center(
               child: Text("A05",
                   textAlign: TextAlign.center, style: TextStyle(color: $base))),

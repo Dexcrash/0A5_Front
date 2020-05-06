@@ -1,10 +1,10 @@
+import 'package:a05/UI/EjercicioView.dart';
 import 'package:a05/assets/colors.dart';
 import 'package:a05/models/activity_model.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'package:a05/Activity/ActivityView.dart';
 
-const mainColor = Colors.orange;
 
 /// Carga una list view con las actividades que le pasan por parametro al
 /// inicializar el widget
@@ -39,69 +39,76 @@ class _ActivitiesListState extends State<ActivitiesList> {
   BoxShadow _boxShadow2 = BoxShadow(
       color: Colors.black54, blurRadius: 4.0, offset: Offset(1.75, 1.75));
 
-  Widget _buildTile(Ejercicio activity) {
+  Widget _buildTile(Ejercicio ejercicio) {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: Colors.white,
         boxShadow: <BoxShadow>[_boxShadow2],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          //Imagen
-          Column(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(6.0),
-                child: Image.asset(
-                  activity.thumbnail,
-                  height: 80,
-                ),
-              )
-            ],
-          ),
-          //Text
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(activity.activityName),
-              Text(
-                widget.category,
-                style: TextStyle(color: Colors.grey),
-              ),
-            ],
-          )),
-          //Time
-          Container(
-            // padding: EdgeInsets.only(10),
-            margin: EdgeInsets.all(10),
-            width: 60,
-            height: 80,
-            alignment: Alignment(0.0, 0.0),
-            color: Colors.grey[200],
-            child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.center,
+      child: FlatButton(
+        onPressed: () => _openEjercicio(ejercicio),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            //Imagen
+            Column(
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.timer, color: Colors.grey),
-                  //Navegar al activity detail
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ActivityView()));
-                  },
-                ),
-                Text("${activity.duration} min")
+                Container(
+                  margin: EdgeInsets.all(6.0),
+                  child: Image.asset(
+                    ejercicio.thumbnail,
+                    height: 80,
+                  ),
+                )
               ],
             ),
-          )
-        ],
+            //Text
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(ejercicio.activityName),
+                Text(
+                  widget.category,
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            )),
+            //Time
+            Container(
+              // padding: EdgeInsets.only(10),
+              margin: EdgeInsets.all(10),
+              width: 60,
+              height: 80,
+              alignment: Alignment(0.0, 0.0),
+              color: Colors.grey[200],
+              child: Column(
+                // crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.timer, color: Colors.grey),
+                    //Navegar al activity detail
+                    onPressed: () => _openEjercicio(ejercicio),
+                  ),
+                  Text("${ejercicio.duration} min")
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  _openEjercicio(Ejercicio ejercicio) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => EjercicioView(
+                  ejercicio: ejercicio,
+                )));
   }
 }

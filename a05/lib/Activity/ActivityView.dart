@@ -13,7 +13,7 @@ class ActivityViewState extends State<ActivityView> {
     return Scaffold(
         backgroundColor: $base,
         appBar: AppBar(
-          backgroundColor: Colors.orange,
+          backgroundColor: $scaffoldBackground,
           iconTheme: IconThemeData(color: $base),
           title: const Text('Actividad', style: TextStyle(color: $base)),
         ),
@@ -74,7 +74,7 @@ class ActivityViewState extends State<ActivityView> {
                             ),
                             IconButton(
                               icon: Icon(Icons.play_circle_filled, size: 80.0),
-                              color: Colors.orange,
+                              color: $mainColor,
                               onPressed: () {
                                 Navigator.push(
                                     //Carga la view de la categoria

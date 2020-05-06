@@ -1,3 +1,4 @@
+import 'package:a05/assets/colors.dart';
 import 'package:flutter/material.dart';
 
 class DropDownMenu extends StatefulWidget {
@@ -70,10 +71,10 @@ class _DropDownMenuState extends State<DropDownMenu> {
                     icon: Icon(Icons.arrow_drop_down),
                     iconSize: 24,
                     elevation: 16,
-                    style: TextStyle(color: Colors.orange),
+                    style: TextStyle(color: $mainColor),
                     underline: Container(
                       height: 2,
-                      color: Colors.orange,
+                      color: $mainColor,
                     ),
                     onChanged: (String newValue) {
                       setState(() {

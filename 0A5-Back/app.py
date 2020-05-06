@@ -9,10 +9,12 @@ from DAOs import KidDAO
 from datetime import datetime
 import DAOs
 from pprint import pprint
+from userDTO import User
+from bson.objectid import ObjectId
 
 client = MongoClient(
     "mongodb+srv://admin:adminPass@cluster0-e8ksn.mongodb.net/test?retryWrites=true&w=majority")
-db = client.tesis
+db = client.db0a5
 
 app = Flask(__name__)
 
@@ -235,3 +237,48 @@ def recomend_ejericios(count, avg, size):
                 
     
     return returnList
+
+
+
+    # Route /users
+# GET gets all users
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    users = db.Users.find()
+    r = []
+    for u in users:
+        user = User()
+        user.from_doc(u)
+        r.append(vars(user))
+    
+    return jsonify(r)
+
+# POST create new user
+@app.route('/users', methods=['POST'])
+def create_user():
+    user = User()
+    user.from_json(request.json)
+    doc = db.Users.find_one({"email":user.email})
+    if doc != None:
+        return "There's already a user with that email", 422
+    
+    inserted_id = str(db.Users.insert_one(vars(user)).inserted_id)
+    doc = db.Users.find_one({"_id":ObjectId(inserted_id)})
+    user = User()
+    user.from_doc(doc)
+    return vars(user)
+
+# Route /users/login_user
+@app.route('/users/login_user', methods=['POST'])
+def login():
+    hash = request.json['pass_hash']
+    user = db.Users.find_one({"email":request.json['email']})
+    if user == None:
+        return "No user found for those credentials", 403
+    local_hash = user['pass_hash']
+    print(hash + ":" + local_hash)
+    if hash == local_hash:
+        user['_id'] = str(user['_id'])
+        return user
+    else:
+        return "No user found for those credentials", 403

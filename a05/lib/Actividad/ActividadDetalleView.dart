@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../assets/colors.dart';
 import '../Profile/ProfileView.dart';
 import "../Home/Home.dart";
-const mainColor = Colors.orange;
 
 class ActividadDetalleView extends StatefulWidget {
   @override
@@ -34,7 +33,7 @@ class ActividadDetalleViewState extends State<ActividadDetalleView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Actividad'),
-        backgroundColor: mainColor,
+        backgroundColor: $mainColor,
       ),
       body: _buildBody(context),
       bottomNavigationBar: BottomNavigationBar(
@@ -98,7 +97,7 @@ class ActividadDetalleViewState extends State<ActividadDetalleView> {
                                 });
                               },
                               icon: Icon(Icons.pause_circle_outline,
-                                  color: Colors.orange, size: 80),
+                                  color: $mainColor, size: 80),
                               label: Text('pause'))
                           : FlatButton.icon(
                               onPressed: () {
@@ -107,7 +106,7 @@ class ActividadDetalleViewState extends State<ActividadDetalleView> {
                                 });
                               },
                               icon: Icon(Icons.play_circle_outline,
-                                  color: Colors.orange, size: 80),
+                                  color: $mainColor, size: 80),
                               label: Text('play'))
                     ]),
                   ),

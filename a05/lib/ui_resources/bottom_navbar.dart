@@ -38,19 +38,19 @@ class NavBarState extends State<NavBar> {
       currentIndex: _selectedIndex, // this will be set when a new tab is tapped
       items: [
         BottomNavigationBarItem(
-          icon: new Icon(Icons.home, color: $scaffoldBackground),
+          icon: new Icon(Icons.home, color: _selectedIndex==0?$scaffoldBackground:$colorSubtitle),
           title: new Text('Home', style: TextStyle(color: $scaffoldBackground)),
         ),
         BottomNavigationBarItem(
-          icon: new Icon(Icons.show_chart, color: $colorSubtitle),
+          icon: new Icon(Icons.show_chart, color:  _selectedIndex==1?$scaffoldBackground:$colorSubtitle),
           title: new Text(''),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search, color: $colorSubtitle),
+          icon: Icon(Icons.search, color: _selectedIndex==2?$scaffoldBackground:$colorSubtitle),
           title: new Text('Activity'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person, color: $colorSubtitle),
+          icon: Icon(Icons.person, color: _selectedIndex==3?$scaffoldBackground:$colorSubtitle),
           title: new Text('Perfil'),
         ),
       ],

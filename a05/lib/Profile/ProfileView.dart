@@ -8,7 +8,6 @@ import 'DropDownMenu.dart';
 import '../assets/colors.dart';
 import "../Home/Home.dart";
 
-const mainColor = Colors.orange;
 
 class ProfileViewState extends State<ProfileView> {
   int _selectedIndex = 3;
@@ -27,7 +26,7 @@ class ProfileViewState extends State<ProfileView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Perfil'),
-        backgroundColor: mainColor,
+        backgroundColor: $mainColor,
       ),
       body: _buildBody(context),
       bottomNavigationBar: NavBar(index: 3),
@@ -93,7 +92,7 @@ class ProfileViewState extends State<ProfileView> {
     return Container(
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
-          color: mainColor[100],
+          color: Colors.orange[100],
           boxShadow: <BoxShadow>[boxShadow2],
           //borderRadius: new BorderRadius.all(new Radius.circular(10.0))
         ),
@@ -111,12 +110,12 @@ class ProfileViewState extends State<ProfileView> {
               Text('Actividades',
                   style: TextStyle(
                       fontSize: 25.0,
-                      color: mainColor,
+                      color: $mainColor,
                       fontWeight: FontWeight.bold)),
               Text('5/15',
                   style: TextStyle(
                       fontSize: 20.0,
-                      color: mainColor,
+                      color: $mainColor,
                       fontWeight: FontWeight.bold)),
               Text('33%',
                   style: TextStyle(
@@ -144,7 +143,7 @@ class ProfileViewState extends State<ProfileView> {
               Container(
                 decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
-                    color: mainColor,
+                    color: $mainColor,
                     boxShadow: [boxShadow2],
                     borderRadius:
                         new BorderRadius.all(new Radius.circular(10.0))),

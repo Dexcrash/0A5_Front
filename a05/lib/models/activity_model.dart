@@ -10,6 +10,7 @@ class Ejercicio {
   final String id;
   final String foto_url;
   final String video_url;
+  final String description;
   Ejercicio(
       {@required this.thumbnail,
       @required this.activityName,
@@ -17,7 +18,8 @@ class Ejercicio {
       @required this.duration,
       @required this.id,
       @required this.foto_url,
-      @required this.video_url});
+      @required this.video_url,
+      @required this.description});
 
   factory Ejercicio.fromJson(Map<String, dynamic> json) {
     return Ejercicio(
@@ -27,6 +29,7 @@ class Ejercicio {
         duration: json["duracion"],
         id: json["_id"],
         foto_url: json["foto_url"],
-        video_url: json["video_url"]);
+        video_url: json["video_url"],
+        description: json["descripcion"]);
   }
 }
