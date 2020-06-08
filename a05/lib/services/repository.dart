@@ -1,7 +1,6 @@
-
 import 'dart:io';
 
-import 'package:a05/models/activity_model.dart';
+import 'package:a05/models/Ejercicio.dart';
 import 'package:a05/models/category_model.dart';
 import 'package:a05/models/kid_model.dart';
 import 'package:a05/services/api_connection.dart';
@@ -16,6 +15,7 @@ class Repository {
     }
     return _instance;
   }
+
   ApiConnection api = ApiConnection();
 
   Future<List<Category>> getAllCategories() {
@@ -49,8 +49,7 @@ class Repository {
     return userId;
   }
 
-
-    Future<String> signIn(String email, String passHash, String name,
+  Future<String> signIn(String email, String passHash, String name,
       String phone, String dateOfBirth, String gender) {
     Map map = {
       "email": email,
@@ -85,5 +84,18 @@ class Repository {
   Future<String> addKid(String nickname, String date, double peso) async {
     String idUser = await getUserId();
     return api.addKid(nickname, date, peso, idUser);
+  }
+
+  Future<String> getCurrentKid() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.containsKey("kid_id")?prefs.getString("kid_id"):"-";
+  }
+
+  void setCurrentKid(String kidId) async {
+    SharedPreferences.getInstance().then((value) => value.setString("kid_id", kidId));
+  }
+
+  void sendActivityCompleted(Ejercicio act) {
+
   }
 }

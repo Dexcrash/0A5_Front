@@ -1,5 +1,5 @@
 import 'package:a05/assets/colors.dart';
-import 'package:a05/models/activity_model.dart';
+import 'package:a05/models/Ejercicio.dart';
 import 'package:a05/ui_resources/Toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

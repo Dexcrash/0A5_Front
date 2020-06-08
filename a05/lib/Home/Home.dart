@@ -1,5 +1,6 @@
 import 'package:a05/category/CategoriesView.dart';
 import 'package:a05/services/repository.dart';
+import 'package:a05/ui_resources/CustomAppBar.dart';
 import 'package:a05/ui_resources/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:a05/assets/colors.dart';
@@ -43,21 +44,16 @@ class _HomeState extends State<Home> {
     // than having to individually change instances of widgets.
     return Scaffold(
       backgroundColor: $secondary,
-      appBar: AppBar(
-          // Here we take the value from the Home object that was created by
-          // the App.build method, and use it to set our appbar title.
-          backgroundColor: $scaffoldBackground,
-          title: Center(
-              child: Text("A05",
-                  textAlign: TextAlign.center, style: TextStyle(color: $base))),
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(Icons.menu, color: $base),
-                onPressed: () {},
-              );
-            },
-          )),
+      appBar: CustomAppBar("0A5").getAppBar(),
+          // leading: Builder(
+          //   builder: (BuildContext context) {
+          //     return IconButton(
+          //       icon: const Icon(Icons.menu, color: $base),
+          //       onPressed: () {},
+          //     );
+          //   },
+          // )
+          
       body: new FutureBuilder(
           future: fcategories,
           builder: (context, snapshot) {

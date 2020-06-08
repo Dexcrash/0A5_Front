@@ -1,4 +1,4 @@
-import 'package:a05/models/activity_model.dart';
+import 'package:a05/models/Ejercicio.dart';
 import 'package:a05/models/category_model.dart';
 import 'package:a05/services/repository.dart';
 import 'package:flutter/material.dart';

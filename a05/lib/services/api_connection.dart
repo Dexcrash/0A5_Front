@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:a05/models/activity_model.dart';
+import 'package:a05/models/Ejercicio.dart';
 import 'package:a05/models/category_model.dart';
 import 'package:a05/models/kid_model.dart';
 import 'package:http/http.dart' as http;
@@ -12,7 +12,7 @@ class ApiConnection {
 
   Future<List<Category>> getAllCategories() async {
     print("Api Connection: GET " + baseUrl + 'categorias');
-    final response = await http.get(baseUrl + 'categorias');
+    var response = await http.get(baseUrl + 'categorias');
     if (response.statusCode != 200) {
       throw Exception("Failed to connect: " + response.statusCode.toString());
     } else {

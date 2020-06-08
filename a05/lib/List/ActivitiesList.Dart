@@ -1,6 +1,6 @@
 import 'package:a05/UI/EjercicioView.dart';
 import 'package:a05/assets/colors.dart';
-import 'package:a05/models/activity_model.dart';
+import 'package:a05/models/Ejercicio.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'package:a05/Activity/ActivityView.dart';

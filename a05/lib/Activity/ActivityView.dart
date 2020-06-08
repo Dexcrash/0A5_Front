@@ -1,5 +1,6 @@
 import 'package:a05/Actividad/ActividadDetalleView.dart';
 import 'package:a05/main.dart';
+import 'package:a05/ui_resources/CustomAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import '../assets/colors.dart';
@@ -12,11 +13,7 @@ class ActivityViewState extends State<ActivityView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: $base,
-        appBar: AppBar(
-          backgroundColor: $scaffoldBackground,
-          iconTheme: IconThemeData(color: $base),
-          title: const Text('Actividad', style: TextStyle(color: $base)),
-        ),
+        appBar: CustomAppBar("Actividad").getAppBar(),
         body: _buildBody(context));
   }
 
